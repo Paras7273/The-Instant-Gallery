@@ -1,0 +1,16 @@
+The_Instant_Gallery.pdf
+FACE_DETECTION_EXPLANATION.md
+PROJECT_LOG.md
+create_sample_data.py
+start_live_ngrok.py
+run_app.py
+.git
+.github
+data/event_gallery/*
+!data/event_gallery/.gitkeep
+data/test_selfies/*
+!data/test_selfies/.gitkeep
+data/person_thumbnails/*
+!data/person_thumbnails/.gitkeep
+data/indexed_db/*
+!data/indexed_db/.gitkeep
