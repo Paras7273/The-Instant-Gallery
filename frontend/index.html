@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>The Instant Gallery | Commercial AI Event Photo Retrieval</title>
+  <title>InstantGallery AI | Enterprise Event Photo Retrieval & Facial Recognition SaaS</title>
   
   <!-- Typography: Poppins (Headings) & Inter (Body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
   
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <style>
     :root {
-      /* Base Light Tokens */
+      /* Design Tokens */
       --color-primary: #8B7CF6;
       --color-primary-hover: #7566E8;
       --color-secondary: #CFE8FF;
@@ -29,7 +29,7 @@
       --color-body: #5C6073;
       --color-success: #9AE6B4;
       --color-success-dark: #276749;
-      --color-header-bg: rgba(250, 250, 252, 0.85);
+      --color-header-bg: rgba(250, 250, 252, 0.88);
 
       /* Radii */
       --radius-btn: 14px;
@@ -50,7 +50,6 @@
     }
 
     [data-theme="dark"] {
-      /* Base Dark Tokens */
       --color-bg: #0F0E17;
       --color-card: #1B192A;
       --color-card-subtle: #242238;
@@ -64,34 +63,29 @@
       --color-primary-hover: #B4A7FF;
       --color-success: #234E39;
       --color-success-dark: #68D391;
-      --color-header-bg: rgba(15, 14, 23, 0.85);
+      --color-header-bg: rgba(15, 14, 23, 0.88);
 
-      /* Shadows */
       --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
       --shadow-md: 0 6px 24px rgba(0, 0, 0, 0.45);
       --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.6);
       --shadow-glow: 0 10px 30px rgba(157, 140, 255, 0.35);
 
-      /* Cursor Tokens */
       --cursor-dot-bg: #00F5D4;
       --cursor-ring-border: rgba(0, 245, 212, 0.6);
       --cursor-ring-hover-bg: rgba(0, 245, 212, 0.2);
     }
 
-    /* Hide native cursor on desktop fine-pointer devices */
+    /* Custom Cursor */
     @media (pointer: fine) {
       body, button, a, input, select, textarea, label {
         cursor: none !important;
       }
     }
 
-    /* Creative Custom Cursor Elements */
     .cursor-dot {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 8px;
-      height: 8px;
+      top: 0; left: 0;
+      width: 8px; height: 8px;
       background-color: var(--cursor-dot-bg);
       border-radius: 50%;
       pointer-events: none;
@@ -103,10 +97,8 @@
 
     .cursor-follower {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 36px;
-      height: 36px;
+      top: 0; left: 0;
+      width: 36px; height: 36px;
       border: 2px solid var(--cursor-ring-border);
       border-radius: 50%;
       pointer-events: none;
@@ -116,74 +108,22 @@
                   height 0.3s cubic-bezier(0.25, 1, 0.5, 1), 
                   border-color 0.3s ease, 
                   background-color 0.3s ease, 
-                  box-shadow 0.3s ease,
-                  opacity 0.2s ease;
+                  box-shadow 0.3s ease;
       backdrop-filter: blur(3px);
     }
 
     .cursor-follower.hovering {
-      width: 58px;
-      height: 58px;
+      width: 58px; height: 58px;
       background-color: var(--cursor-ring-hover-bg);
       border-color: var(--color-primary);
       box-shadow: 0 0 24px var(--color-primary);
     }
 
-    .cursor-dot.hovering {
-      width: 4px;
-      height: 4px;
-      opacity: 0.4;
-    }
+    .cursor-dot.hovering { width: 4px; height: 4px; opacity: 0.4; }
+    .cursor-follower.clicking { transform: translate(-50%, -50%) scale(0.8); border-color: var(--color-accent); }
 
-    .cursor-follower.clicking {
-      transform: translate(-50%, -50%) scale(0.8);
-      border-color: var(--color-accent);
-      background-color: rgba(255, 183, 178, 0.3);
-    }
-
-    .cursor-dot.clicking {
-      transform: translate(-50%, -50%) scale(1.8);
-    }
-
-    /* Smooth Theme Transition */
-    body, header, card, .card, .stat-card, .photo-card, .person-card, footer, .modal-card, input, select, button, .nav-tabs, .mode-switch-bar, .upload-zone, .webcam-container {
-      transition: background-color 0.35s ease, border-color 0.35s ease, color 0.35s ease, box-shadow 0.35s ease;
-    }
-
-    /* Dark Mode Toggle Button */
-    .theme-toggle-btn {
-      background: var(--color-input-bg);
-      border: 1px solid var(--color-border);
-      color: var(--color-heading);
-      padding: 0.55rem 1.1rem;
-      border-radius: var(--radius-full);
-      font-size: 0.85rem;
-      font-weight: 600;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      box-shadow: var(--shadow-sm);
-    }
-
-    .theme-toggle-btn:hover {
-      border-color: var(--color-primary);
-      color: var(--color-primary);
-      transform: scale(1.04);
-      box-shadow: var(--shadow-glow);
-    }
-
-    .theme-toggle-btn i {
-      transition: transform 0.4s ease;
-    }
-
-    .theme-toggle-btn:hover i {
-      transform: rotate(20deg) scale(1.1);
-    }
-
+    /* Base Reset & Layout */
     * { box-sizing: border-box; margin: 0; padding: 0; }
-
     body {
       font-family: 'Inter', sans-serif;
       background-color: var(--color-bg);
@@ -193,1264 +133,1226 @@
       flex-direction: column;
       line-height: 1.6;
       overflow-x: hidden;
+      transition: background-color 0.35s ease, color 0.35s ease;
     }
 
     h1, h2, h3, h4, h5, h6 {
       font-family: 'Poppins', sans-serif;
       color: var(--color-heading);
-      letter-spacing: -0.02em;
+      line-height: 1.25;
     }
 
-    /* Ambient Background Mesh */
-    .bg-mesh {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: -1;
-      pointer-events: none;
-      overflow: hidden;
-    }
+    a { color: var(--color-primary); text-decoration: none; }
 
-    .mesh-blob-1 {
-      position: absolute;
-      top: -150px;
-      left: 10%;
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, rgba(139, 124, 246, 0.15) 0%, rgba(207, 232, 255, 0.25) 50%, transparent 70%);
-      filter: blur(80px);
-      animation: floatBlob1 18s ease-in-out infinite alternate;
-    }
-
-    .mesh-blob-2 {
-      position: absolute;
-      top: 400px;
-      right: -100px;
-      width: 500px;
-      height: 500px;
-      background: radial-gradient(circle, rgba(255, 183, 178, 0.2) 0%, rgba(165, 148, 249, 0.15) 50%, transparent 70%);
-      filter: blur(80px);
-      animation: floatBlob2 22s ease-in-out infinite alternate;
-    }
-
-    @keyframes floatBlob1 {
-      0% { transform: translate(0, 0) scale(1); }
-      100% { transform: translate(60px, 40px) scale(1.1); }
-    }
-
-    @keyframes floatBlob2 {
-      0% { transform: translate(0, 0) scale(1); }
-      100% { transform: translate(-50px, 60px) scale(1.08); }
-    }
-
-    /* Sticky Glassmorphism Header */
-    header {
+    /* Sticky Navigation Bar */
+    header.saas-header {
       position: sticky;
       top: 0;
-      z-index: 100;
+      z-index: 1000;
       background: var(--color-header-bg);
       backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--color-border);
-      padding: 1rem 2.5rem;
+      padding: 0.9rem 2rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
 
-    .brand {
+    .brand-logo {
       display: flex;
       align-items: center;
-      gap: 12px;
-      cursor: pointer;
-      text-decoration: none;
-    }
-
-    .brand-logo-img {
-      width: 40px;
-      height: 40px;
-      border-radius: 12px;
-      object-fit: cover;
-      border: 2px solid var(--color-primary);
-      box-shadow: var(--shadow-sm);
-    }
-
-    .brand-title {
+      gap: 10px;
       font-family: 'Poppins', sans-serif;
-      font-size: 1.35rem;
       font-weight: 700;
+      font-size: 1.25rem;
       color: var(--color-heading);
-      letter-spacing: -0.03em;
+      cursor: pointer;
     }
 
     .brand-badge {
-      background: rgba(139, 124, 246, 0.12);
-      border: 1px solid rgba(139, 124, 246, 0.3);
-      color: var(--color-primary);
-      padding: 3px 10px;
+      font-size: 0.68rem;
+      padding: 2px 8px;
+      background: linear-gradient(135deg, var(--color-primary), #B4A7FF);
+      color: #fff;
       border-radius: var(--radius-full);
-      font-size: 0.75rem;
       font-weight: 600;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
+      letter-spacing: 0.5px;
     }
 
-    .pulse-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: #10B981;
-      box-shadow: 0 0 8px #10B981;
-      animation: pulseDot 2s infinite;
-    }
-
-    @keyframes pulseDot {
-      0% { transform: scale(0.95); opacity: 0.8; }
-      50% { transform: scale(1.25); opacity: 1; }
-      100% { transform: scale(0.95); opacity: 0.8; }
-    }
-
-    .nav-tabs {
+    nav.nav-links {
       display: flex;
-      gap: 6px;
-      background: var(--color-input-bg);
-      padding: 4px;
-      border-radius: 14px;
-      border: 1px solid var(--color-border);
-    }
-
-    .tab-btn {
-      padding: 8px 18px;
-      border: none;
-      background: transparent;
-      color: var(--color-body);
-      font-weight: 600;
-      font-size: 0.88rem;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: all 0.25s ease;
-      display: inline-flex;
       align-items: center;
-      gap: 7px;
+      gap: 1.8rem;
     }
 
-    .tab-btn.active {
-      background: var(--color-card);
+    .nav-link-item {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--color-body);
+      transition: color 0.25s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nav-link-item:hover, .nav-link-item.active {
       color: var(--color-primary);
-      box-shadow: var(--shadow-sm);
     }
 
-    /* Primary & Secondary Buttons */
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* Buttons */
     .btn-primary {
-      background: var(--color-primary);
-      color: #FFFFFF;
+      background: linear-gradient(135deg, var(--color-primary), var(--color-primary-hover));
+      color: #FFFFFF !important;
       border: none;
-      padding: 0.8rem 1.6rem;
-      font-size: 0.95rem;
-      font-weight: 600;
+      padding: 0.68rem 1.4rem;
       border-radius: var(--radius-btn);
+      font-weight: 600;
+      font-size: 0.9rem;
       cursor: pointer;
-      transition: all 0.25s ease;
-      box-shadow: var(--shadow-glow);
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
-      text-decoration: none;
+      box-shadow: var(--shadow-md);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .btn-primary:hover {
-      background: var(--color-primary-hover);
       transform: translateY(-2px);
-      box-shadow: 0 12px 32px rgba(139, 124, 246, 0.35);
+      box-shadow: var(--shadow-glow);
+      opacity: 0.96;
     }
 
     .btn-secondary {
       background: var(--color-card);
       border: 1px solid var(--color-border);
       color: var(--color-heading);
-      padding: 0.8rem 1.6rem;
-      font-size: 0.95rem;
-      font-weight: 600;
+      padding: 0.68rem 1.3rem;
       border-radius: var(--radius-btn);
+      font-weight: 600;
+      font-size: 0.9rem;
       cursor: pointer;
-      transition: all 0.2s ease;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
-      box-shadow: var(--shadow-sm);
-      text-decoration: none;
+      transition: all 0.3s ease;
     }
 
     .btn-secondary:hover {
       border-color: var(--color-primary);
       color: var(--color-primary);
-      background: var(--color-secondary);
       transform: translateY(-1px);
     }
 
-    .btn-action-sm {
-      padding: 6px 14px;
-      font-size: 0.82rem;
-      border-radius: 10px;
+    .theme-toggle-btn {
+      background: var(--color-input-bg);
+      border: 1px solid var(--color-border);
+      color: var(--color-heading);
+      padding: 0.55rem 1rem;
+      border-radius: var(--radius-full);
+      font-size: 0.85rem;
       font-weight: 600;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      transition: all 0.2s;
-      border: none;
-      text-decoration: none;
+      transition: all 0.3s ease;
     }
 
-    .btn-download {
-      background: rgba(154, 230, 180, 0.35);
-      border: 1px solid rgba(39, 103, 73, 0.2);
-      color: var(--color-success-dark);
-    }
-    .btn-download:hover {
-      background: #9AE6B4;
-      transform: translateY(-1px);
-    }
-
-    .btn-share {
-      background: var(--color-secondary);
-      border: 1px solid rgba(139, 124, 246, 0.2);
+    .theme-toggle-btn:hover {
+      border-color: var(--color-primary);
       color: var(--color-primary);
-    }
-    .btn-share:hover {
-      background: #B9DCFF;
-      transform: translateY(-1px);
+      transform: scale(1.03);
     }
 
-    .btn-danger {
-      background: rgba(255, 183, 178, 0.35);
-      border: 1px solid rgba(239, 68, 68, 0.3);
-      color: #C53030;
-    }
-    .btn-danger:hover {
-      background: #FFB7B2;
-      color: #9B2C2C;
-    }
-
-    /* Main Container */
-    main {
-      flex: 1;
+    /* Hero Section */
+    .hero-section {
+      padding: 4.5rem 2rem 3rem;
       max-width: 1240px;
-      width: 100%;
       margin: 0 auto;
-      padding: 2.5rem 1.5rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(139, 124, 246, 0.1);
+      border: 1px solid rgba(139, 124, 246, 0.25);
+      color: var(--color-primary);
+      padding: 0.4rem 1rem;
+      border-radius: var(--radius-full);
+      font-size: 0.84rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-headline {
+      font-size: 3.2rem;
+      font-weight: 800;
+      max-width: 900px;
+      margin-bottom: 1.2rem;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, var(--color-heading) 40%, var(--color-primary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 1.15rem;
+      color: var(--color-body);
+      max-width: 760px;
+      margin-bottom: 2.2rem;
+      font-weight: 400;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
+
+    /* Event Category Chips */
+    .category-bar {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 3.5rem;
+    }
+
+    .category-chip {
+      background: var(--color-card);
+      border: 1px solid var(--color-border);
+      color: var(--color-body);
+      padding: 0.45rem 1rem;
+      border-radius: var(--radius-full);
+      font-size: 0.82rem;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* Hero Mockup Glassmorphic Visual */
+    .hero-mockup-card {
+      width: 100%;
+      max-width: 980px;
+      background: var(--color-card);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-modal);
+      padding: 1.5rem;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mockup-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--color-border);
+      padding-bottom: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .mockup-dots {
+      display: flex;
+      gap: 6px;
+    }
+    .dot { width: 10px; height: 10px; border-radius: 50%; }
+    .dot-red { background: #FF5F56; }
+    .dot-yellow { background: #FFBD2E; }
+    .dot-green { background: #27C93F; }
+
+    .mockup-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .mockup-photo-box {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      height: 180px;
+      background: #EAEBFA;
+    }
+
+    .mockup-photo-box img {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+
+    .ai-face-box {
+      position: absolute;
+      top: 25%; left: 30%; width: 40%; height: 45%;
+      border: 2px solid var(--color-primary);
+      box-shadow: 0 0 14px var(--color-primary);
+      border-radius: 8px;
+    }
+
+    .ai-match-pill {
+      position: absolute;
+      bottom: 10px; right: 10px;
+      background: rgba(39, 103, 73, 0.9);
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: var(--radius-full);
+      backdrop-filter: blur(4px);
+    }
+
+    /* Section Headers */
+    .section-title-group {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .section-subtitle {
+      color: var(--color-primary);
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+    }
+    .section-title {
+      font-size: 2.2rem;
+      font-weight: 700;
+    }
+
+    /* 7-Step Visual Workflow Section */
+    .workflow-section {
+      padding: 4rem 2rem;
+      background: var(--color-card-subtle);
+      border-top: 1px solid var(--color-border);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .workflow-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 14px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .workflow-card {
+      background: var(--color-card);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-card);
+      padding: 1.2rem 0.8rem;
+      text-align: center;
+      position: relative;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.3s ease;
+    }
+
+    .workflow-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--color-primary);
+      box-shadow: var(--shadow-md);
+    }
+
+    .workflow-step-num {
+      width: 28px; height: 28px;
+      background: var(--color-secondary);
+      color: var(--color-primary);
+      border-radius: 50%;
+      font-weight: 700;
+      font-size: 0.8rem;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 10px;
+    }
+
+    .workflow-icon {
+      color: var(--color-primary);
+      margin-bottom: 8px;
+    }
+
+    .workflow-title {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--color-heading);
+    }
+
+    /* View Panels (Tab Container) */
+    .main-content-container {
+      max-width: 1240px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+      width: 100%;
     }
 
     .view-panel {
       display: none;
       animation: fadeIn 0.4s ease;
     }
-
-    .view-panel.active {
-      display: block;
-    }
+    .view-panel.active { display: block; }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(12px); }
+      from { opacity: 0; transform: translateY(8px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Cards */
-    .card {
-      background: var(--color-card);
-      border: 1px solid var(--color-border);
-      border-radius: var(--radius-card);
-      padding: 2rem;
-      box-shadow: var(--shadow-md);
-      margin-bottom: 2rem;
-      position: relative;
-    }
-
-    /* Hero Landing Section */
-    .hero-section {
-      text-align: center;
-      padding: 3rem 1rem 4rem 1rem;
-      max-width: 860px;
-      margin: 0 auto 2.5rem auto;
-    }
-
-    .hero-pill {
-      background: var(--color-secondary);
-      border: 1px solid rgba(139, 124, 246, 0.25);
-      color: var(--color-primary);
-      padding: 6px 16px;
-      border-radius: var(--radius-full);
-      font-size: 0.85rem;
-      font-weight: 600;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 1.5rem;
-    }
-
-    .hero-headline {
-      font-size: 3rem;
-      font-weight: 700;
-      line-height: 1.18;
-      margin-bottom: 1.2rem;
-      color: var(--color-heading);
-      background: linear-gradient(135deg, #22223B 0%, #4A4E69 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .hero-subheadline {
-      font-size: 1.15rem;
-      color: var(--color-body);
-      margin-bottom: 2.2rem;
-      line-height: 1.65;
-      max-width: 720px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .hero-cta-group {
+    /* Dashboard Analytics Grid */
+    .dashboard-header-bar {
       display: flex;
-      gap: 1rem;
-      justify-content: center;
+      justify-content: space-between;
       align-items: center;
+      margin-bottom: 1.8rem;
       flex-wrap: wrap;
-      margin-bottom: 3rem;
+      gap: 14px;
     }
 
-    .feature-strip {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      flex-wrap: wrap;
-      margin-top: 2.5rem;
-      padding-top: 2rem;
-      border-top: 1px solid var(--color-border);
-    }
-
-    .feature-item {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.88rem;
-      font-weight: 600;
-      color: var(--color-heading);
-    }
-
-    /* Modal Styling */
-    .modal-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(34, 34, 59, 0.5);
-      backdrop-filter: blur(8px);
-      z-index: 200;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 1.5rem;
-      animation: fadeIn 0.3s ease;
-    }
-
-    .modal-card {
-      background: var(--color-card);
-      border-radius: var(--radius-modal);
-      padding: 2.5rem;
-      max-width: 520px;
-      width: 100%;
-      box-shadow: var(--shadow-lg);
-      border: 1px solid var(--color-border);
-      position: relative;
-    }
-
-    .modal-close-btn {
-      position: absolute;
-      top: 1.2rem;
-      right: 1.2rem;
-      background: #F1F2F8;
-      border: none;
-      width: 34px;
-      height: 34px;
-      border-radius: 50%;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--color-body);
-    }
-
-    /* Inputs */
-    .custom-input {
-      background: #F8F9FD;
-      border: 1px solid var(--color-border);
-      color: var(--color-heading);
-      padding: 0.8rem 1.2rem;
-      border-radius: 14px;
-      font-size: 0.95rem;
-      outline: none;
-      transition: all 0.2s ease;
-      width: 100%;
-      font-family: 'Inter', sans-serif;
-    }
-
-    .custom-input:focus {
-      border-color: var(--color-primary);
-      background: #FFFFFF;
-      box-shadow: 0 0 0 3px rgba(139, 124, 246, 0.15);
-    }
-
-    .select-custom {
-      background: #F8F9FD;
-      border: 1px solid var(--color-border);
-      color: var(--color-heading);
-      padding: 0.7rem 1.2rem;
-      border-radius: 14px;
-      font-size: 0.9rem;
-      font-weight: 500;
-      outline: none;
-      cursor: pointer;
-      font-family: 'Inter', sans-serif;
-    }
-
-    /* Dual Mode Selector */
-    .mode-toggle-group {
-      display: inline-flex;
-      background: #F1F2F8;
-      padding: 4px;
-      border-radius: 14px;
-      border: 1px solid var(--color-border);
-    }
-
-    .mode-btn {
-      padding: 8px 18px;
-      border: none;
-      background: transparent;
-      color: var(--color-body);
-      font-weight: 600;
-      font-size: 0.88rem;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .mode-btn.active {
-      background: var(--color-card);
-      color: var(--color-primary);
-      box-shadow: var(--shadow-sm);
-    }
-
-    /* Live Webcam Box */
-    .webcam-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1.5rem;
-      padding: 2rem;
-      background: #F8F9FD;
-      border-radius: var(--radius-card);
-      border: 2px dashed rgba(139, 124, 246, 0.3);
-      margin-top: 1.2rem;
-    }
-
-    .webcam-wrapper {
-      position: relative;
-      width: 280px;
-      height: 280px;
-      border-radius: 50%;
-      overflow: hidden;
-      border: 4px solid var(--color-primary);
-      box-shadow: var(--shadow-glow);
-      background: #22223B;
-    }
-
-    #webcam-video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transform: scaleX(-1);
-    }
-
-    .face-guide-overlay {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 180px;
-      height: 220px;
-      border: 2px dashed rgba(255, 255, 255, 0.7);
-      border-radius: 50%;
-      pointer-events: none;
-    }
-
-    /* Upload Zone */
-    .upload-zone {
-      border: 2px dashed rgba(139, 124, 246, 0.35);
-      border-radius: var(--radius-card);
-      padding: 3rem 2rem;
-      text-align: center;
-      background: #F8F9FD;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      margin-top: 1.2rem;
-    }
-
-    .upload-zone:hover {
-      border-color: var(--color-primary);
-      background: rgba(139, 124, 246, 0.04);
-      transform: translateY(-2px);
-    }
-
-    /* Preset Threshold Buttons */
-    .preset-btn {
-      background: #F1F2F8;
-      border: 1px solid var(--color-border);
-      color: var(--color-body);
-      padding: 5px 12px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .preset-btn:hover {
-      border-color: var(--color-primary);
-      color: var(--color-primary);
-      background: var(--color-card);
-    }
-
-    /* Pinterest Masonry Grid */
-    .masonry-grid {
-      column-count: 3;
-      column-gap: 1.5rem;
-      margin-top: 1.5rem;
-    }
-
-    @media (max-width: 900px) { .masonry-grid { column-count: 2; } }
-    @media (max-width: 600px) { .masonry-grid { column-count: 1; } }
-
-    .photo-card {
-      break-inside: avoid;
-      margin-bottom: 1.5rem;
-      background: var(--color-card);
-      border: 1px solid var(--color-border);
-      border-radius: var(--radius-card);
-      overflow: hidden;
-      box-shadow: var(--shadow-sm);
-      transition: all 0.3s ease;
-      position: relative;
-    }
-
-    .photo-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-md);
-      border-color: rgba(139, 124, 246, 0.4);
-    }
-
-    .photo-img {
-      width: 100%;
-      height: auto;
-      display: block;
-      object-fit: cover;
-    }
-
-    .photo-body {
-      padding: 1.2rem;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .badge-match {
-      background: #9AE6B4;
-      color: #1C4ED8;
-      color: var(--color-success-dark);
-      padding: 3px 10px;
-      border-radius: var(--radius-full);
-      font-size: 0.78rem;
-      font-weight: 700;
-    }
-
-    /* Analytics Dashboard Cards */
     .stats-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.25rem;
-      margin-bottom: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 2.2rem;
     }
 
     .stat-card {
       background: var(--color-card);
       border: 1px solid var(--color-border);
       border-radius: var(--radius-card);
-      padding: 1.5rem;
+      padding: 1.4rem;
       box-shadow: var(--shadow-sm);
-      display: flex;
-      align-items: center;
-      gap: 1.2rem;
+      position: relative;
     }
 
-    .stat-icon {
-      width: 52px;
-      height: 52px;
-      border-radius: 14px;
-      background: var(--color-secondary);
-      border: 1px solid rgba(139, 124, 246, 0.2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--color-primary);
-    }
-
-    .stat-val {
-      font-size: 1.8rem;
-      font-weight: 700;
-      font-family: 'Poppins', sans-serif;
-      color: var(--color-heading);
-      line-height: 1.1;
-    }
-
-    .stat-lbl {
+    .stat-card-label {
       font-size: 0.82rem;
       color: var(--color-body);
-      margin-top: 3px;
-    }
-
-    /* Folder Chips Bar */
-    .folder-bar {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      align-items: center;
-      margin-top: 1.2rem;
-    }
-
-    .folder-chip {
-      background: #F1F2F8;
-      border: 1px solid var(--color-border);
-      border-radius: 12px;
-      padding: 8px 16px;
-      font-size: 0.88rem;
       font-weight: 600;
-      color: var(--color-heading);
-      cursor: pointer;
-      display: inline-flex;
+      display: flex;
       align-items: center;
-      gap: 8px;
-      transition: all 0.2s ease;
+      justify-content: space-between;
     }
 
-    .folder-chip:hover {
-      border-color: var(--color-primary);
-      background: var(--color-secondary);
+    .stat-card-value {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--color-heading);
+      font-family: 'Poppins', sans-serif;
+      margin: 8px 0 4px;
     }
 
-    .folder-chip.active {
-      background: var(--color-primary);
-      color: #FFFFFF;
-      border-color: var(--color-primary);
-      box-shadow: var(--shadow-glow);
+    .stat-card-trend {
+      font-size: 0.76rem;
+      color: var(--color-success-dark);
+      font-weight: 600;
     }
 
-    .folder-chip .count-badge {
-      background: rgba(255, 255, 255, 0.25);
-      padding: 2px 8px;
-      border-radius: 10px;
-      font-size: 0.75rem;
-    }
-
-    .folder-chip.active .count-badge {
-      background: rgba(255, 255, 255, 0.3);
-      color: #FFFFFF;
-    }
-
-    /* Person Roster Grid */
-    .person-roster-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-      gap: 1.25rem;
-      margin-bottom: 2.5rem;
-    }
-
-    .person-card {
+    /* Event Cards & Quick Actions */
+    .section-card {
       background: var(--color-card);
       border: 1px solid var(--color-border);
       border-radius: var(--radius-card);
-      padding: 1.25rem;
-      text-align: center;
-      transition: all 0.3s ease;
-      cursor: pointer;
+      padding: 1.8rem;
+      margin-bottom: 2rem;
       box-shadow: var(--shadow-sm);
     }
 
-    .person-card:hover {
-      border-color: var(--color-primary);
-      transform: translateY(-3px);
-      box-shadow: var(--shadow-md);
-    }
-
-    .person-card.active {
-      border-color: var(--color-primary);
-      background: var(--color-secondary);
-    }
-
-    .person-avatar {
-      width: 76px;
-      height: 76px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin: 0 auto 0.8rem auto;
-      border: 3px solid var(--color-primary);
-      box-shadow: var(--shadow-sm);
-    }
-
-    /* Toast Notification */
-    .toast {
-      position: fixed;
-      bottom: 2rem;
-      right: 2rem;
-      background: var(--color-heading);
-      color: #FFFFFF;
-      padding: 0.9rem 1.6rem;
-      border-radius: 14px;
-      font-size: 0.9rem;
-      font-weight: 500;
-      box-shadow: var(--shadow-lg);
-      z-index: 300;
-      display: none;
-      align-items: center;
-      gap: 10px;
-      animation: fadeIn 0.3s ease;
-    }
-
-    /* Skeleton Loading State */
-    .skeleton-card {
-      height: 260px;
-      background: linear-gradient(90deg, #F1F2F8 25%, #E9EAF3 50%, #F1F2F8 75%);
-      background-size: 200% 100%;
-      animation: skeletonLoading 1.5s infinite;
+    /* Drag & Drop Upload Zone */
+    .upload-zone {
+      border: 2px dashed var(--color-primary);
       border-radius: var(--radius-card);
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      background: rgba(139, 124, 246, 0.03);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .upload-zone:hover {
+      background: rgba(139, 124, 246, 0.08);
+      border-color: var(--color-primary-hover);
+    }
+
+    .upload-progress-bar {
+      width: 100%;
+      height: 8px;
+      background: var(--color-input-bg);
+      border-radius: var(--radius-full);
+      overflow: hidden;
+      margin-top: 1rem;
+      display: none;
+    }
+
+    .upload-progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+      transition: width 0.3s ease;
+    }
+
+    /* Camera HUD & Selfie Search */
+    .webcam-hud {
+      position: relative;
+      width: 100%;
+      max-width: 440px;
+      height: 380px;
+      margin: 0 auto 1.5rem;
+      border-radius: var(--radius-modal);
+      overflow: hidden;
+      background: #000;
+      box-shadow: var(--shadow-lg);
+      border: 3px solid var(--color-primary);
+    }
+
+    .webcam-hud video {
+      width: 100%; height: 100%; object-fit: cover;
+      transform: scaleX(-1);
+    }
+
+    .reticle-overlay {
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 220px; height: 260px;
+      transform: translate(-50%, -50%);
+      border: 2px dashed rgba(255, 255, 255, 0.7);
+      border-radius: 50%;
+      pointer-events: none;
+      box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.35);
+    }
+
+    /* AI Multi-Step Processing Overlay */
+    .ai-processing-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 14, 23, 0.88);
+      backdrop-filter: blur(12px);
+      z-index: 10000;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      color: #fff;
+    }
+
+    .ai-spinner-ring {
+      width: 70px; height: 70px;
+      border: 4px solid rgba(139, 124, 246, 0.2);
+      border-top-color: var(--color-primary);
+      border-radius: 50%;
+      animation: spin 1s infinite linear;
       margin-bottom: 1.5rem;
     }
 
-    @keyframes skeletonLoading {
-      0% { background-position: 200% 0; }
-      100% { background-position: -200% 0; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .ai-step-text {
+      font-size: 1.25rem;
+      font-weight: 700;
+      font-family: 'Poppins', sans-serif;
+      margin-bottom: 0.5rem;
     }
 
-    footer {
-      text-align: center;
+    .ai-step-subtext {
+      font-size: 0.9rem;
+      color: #A7A9BE;
+    }
+
+    /* Masonry Results Gallery */
+    .gallery-masonry-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 18px;
+    }
+
+    .photo-card {
+      background: var(--color-card);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-card);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .photo-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--color-primary);
+    }
+
+    .photo-card-img-wrapper {
+      position: relative;
+      height: 240px;
+      background: #EAEBFA;
+      overflow: hidden;
+    }
+
+    .photo-card-img-wrapper img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .photo-card:hover img { transform: scale(1.05); }
+
+    .badge-confidence {
+      position: absolute;
+      top: 10px; right: 10px;
+      background: rgba(39, 103, 73, 0.92);
+      color: #FFFFFF;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: var(--radius-full);
+      backdrop-filter: blur(4px);
+    }
+
+    .photo-card-body {
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    /* Feature Grid & Future AI Roadmap */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .feature-card {
+      background: var(--color-card);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-card);
+      padding: 1.6rem;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.3s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--color-primary);
+    }
+
+    .roadmap-badge {
+      font-size: 0.7rem;
+      padding: 2px 8px;
+      background: var(--color-secondary);
+      color: var(--color-primary);
+      border-radius: var(--radius-full);
+      font-weight: 700;
+      float: right;
+    }
+
+    /* Modals & Overlays */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.55);
+      backdrop-filter: blur(6px);
+      z-index: 9000;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    .modal-card {
+      background: var(--color-card);
+      border-radius: var(--radius-modal);
+      max-width: 520px;
+      width: 100%;
       padding: 2rem;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+    }
+
+    .modal-close-btn {
+      position: absolute;
+      top: 1.2rem; right: 1.2rem;
+      background: none; border: none;
       color: var(--color-body);
+      cursor: pointer;
+    }
+
+    /* Form Controls */
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+    .form-label {
+      display: block;
       font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--color-heading);
+      margin-bottom: 6px;
+    }
+    .form-input, .form-select {
+      width: 100%;
+      padding: 0.72rem 1rem;
+      background: var(--color-input-bg);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-btn);
+      color: var(--color-heading);
+      font-size: 0.9rem;
+    }
+    .form-input:focus, .form-select:focus {
+      outline: none;
+      border-color: var(--color-primary);
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: 2rem; right: 2rem;
+      background: var(--color-heading);
+      color: #fff;
+      padding: 0.8rem 1.4rem;
+      border-radius: var(--radius-btn);
+      font-size: 0.88rem;
+      font-weight: 600;
+      display: none;
+      align-items: center;
+      gap: 10px;
+      box-shadow: var(--shadow-lg);
+      z-index: 10000;
+    }
+
+    footer.saas-footer {
       border-top: 1px solid var(--color-border);
-      background: #FFFFFF;
+      padding: 2.5rem 2rem;
+      text-align: center;
+      font-size: 0.88rem;
+      color: var(--color-body);
       margin-top: auto;
+      background: var(--color-card);
     }
   </style>
 </head>
 <body>
 
-  <!-- Creative Custom Cursor Elements -->
+  <!-- Custom Cursor Elements -->
   <div id="cursor-dot" class="cursor-dot"></div>
   <div id="cursor-follower" class="cursor-follower"></div>
 
-  <!-- Ambient Mesh Background -->
-  <div class="bg-mesh">
-    <div class="mesh-blob-1"></div>
-    <div class="mesh-blob-2"></div>
-  </div>
-
   <!-- Header Navigation -->
-  <header>
-    <a href="#" class="brand" onclick="switchTab('hero', event)">
-      <img src="/assets/logo.jpg" alt="Logo" class="brand-logo-img" onerror="this.style.display='none'" />
-      <div>
-        <div class="brand-title">The Instant Gallery</div>
-      </div>
-      <div class="brand-badge">
-        <span class="pulse-dot"></span> PyTorch AI Active
-      </div>
-    </a>
-    
-    <div class="nav-tabs">
-      <button class="tab-btn active" id="nav-btn-hero" onclick="switchTab('hero', event)">
-        <i data-lucide="sparkles" size="16"></i> Overview
-      </button>
-      <button class="tab-btn" id="nav-btn-attendee" onclick="switchTab('attendee', event)">
-        <i data-lucide="camera" size="16"></i> Find My Photos
-      </button>
-      <button class="tab-btn" id="nav-btn-photographer" onclick="switchTab('photographer', event)">
-        <i data-lucide="upload-cloud" size="16"></i> Photographer Portal
-      </button>
-      <button class="tab-btn" id="nav-btn-theory" onclick="switchTab('theory', event)">
-        <i data-lucide="cpu" size="16"></i> Tech Spec
-      </button>
+  <header class="saas-header">
+    <div class="brand-logo" onclick="switchView('home')">
+      <i data-lucide="aperture" size="26" color="#8B7CF6"></i>
+      <span>InstantGallery AI</span>
+      <span class="brand-badge">SaaS PRO</span>
     </div>
 
-    <div style="display: flex; align-items: center; gap: 10px;">
-      <button id="theme-toggle-btn" class="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Dark / Light Mode">
-        <i id="theme-icon" data-lucide="moon" size="16"></i>
-        <span id="theme-text">Dark Mode</span>
-      </button>
+    <nav class="nav-links">
+      <a href="#home" class="nav-link-item active" onclick="switchView('home')">Home</a>
+      <a href="#how-it-works" class="nav-link-item" onclick="scrollToWorkflow()">How It Works</a>
+      <a href="#features" class="nav-link-item" onclick="scrollToFeatures()">Features</a>
+      <a href="#pricing" class="nav-link-item" onclick="showToast('Pricing plans coming soon!')">Pricing <span class="brand-badge" style="background:#8B7CF6;">Soon</span></a>
+      <a href="#attendee" class="nav-link-item" onclick="switchView('attendee')"><i data-lucide="camera" size="16"></i> Guest Search</a>
+      <a href="#dashboard" class="nav-link-item" onclick="switchView('dashboard')"><i data-lucide="layout-dashboard" size="16"></i> Dashboard</a>
+    </nav>
 
-      <button class="btn-primary" style="padding: 0.6rem 1.2rem; font-size: 0.88rem;" onclick="openQRModal()">
-        <i data-lucide="qr-code" size="16"></i> Event QR Code
+    <div class="nav-actions">
+      <button class="theme-toggle-btn" onclick="toggleTheme()">
+        <i id="theme-icon" data-lucide="moon" size="15"></i>
+        <span id="theme-text">Dark</span>
+      </button>
+      <button class="btn-secondary" onclick="switchView('attendee')">
+        <i data-lucide="scan-face" size="16"></i> Scan Selfie
+      </button>
+      <button class="btn-primary" onclick="openCreateEventModal()">
+        <i data-lucide="plus-circle" size="16"></i> Create Event
       </button>
     </div>
   </header>
 
-  <main>
+  <!-- HOME / HERO VIEW -->
+  <main id="view-home" class="view-panel active">
+    
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-pill">
+        <i data-lucide="sparkles" size="15"></i>
+        AI-Powered Face Recognition for Commercial Events
+      </div>
 
-    <!-- 1. HERO OVERVIEW TAB -->
-    <div id="tab-hero" class="view-panel active">
-      <div class="hero-section">
-        <div class="hero-pill">
-          <i data-lucide="sparkles" size="14"></i> AI-Powered Event Facial Recognition
-        </div>
-        
-        <h1 class="hero-headline">Find Every Event Photo of Yourself in Seconds</h1>
-        
-        <p class="hero-subheadline">
-          Upload event photos once. Guests simply scan a QR code, take a selfie, and instantly access every photo they appear in using AI-powered face recognition.
-        </p>
+      <h1 class="hero-headline">Find Every Event Photo of Yourself Instantly</h1>
+      
+      <p class="hero-subtitle">
+        Upload event photos once. Guests simply scan a QR code, take a selfie, and instantly receive every photo they appear in using PyTorch & FaceNet AI.
+      </p>
 
-        <div class="hero-cta-group">
-          <button class="btn-primary" onclick="switchTab('attendee')">
-            <i data-lucide="scan-face" size="18"></i> Get Started (Find Photos)
-          </button>
-          <button class="btn-secondary" onclick="openDemoModal()">
-            <i data-lucide="play-circle" size="18"></i> Watch Demo
-          </button>
-        </div>
+      <div class="hero-cta-group">
+        <button class="btn-primary" style="padding: 0.85rem 2rem; font-size: 1rem;" onclick="switchView('dashboard')">
+          <i data-lucide="rocket" size="18"></i> Get Started Free
+        </button>
+        <button class="btn-secondary" style="padding: 0.85rem 1.8rem; font-size: 1rem;" onclick="switchView('attendee')">
+          <i data-lucide="play-circle" size="18"></i> Try Live Selfie Search
+        </button>
+      </div>
 
-        <div class="feature-strip">
-          <div class="feature-item">
-            <i data-lucide="check-circle-2" color="#8B7CF6" size="18"></i> MTCNN Affine Landmark Warping
+      <!-- Event Category Chips -->
+      <div class="category-bar">
+        <span class="category-chip">💍 Weddings</span>
+        <span class="category-chip">🎓 College Fests</span>
+        <span class="category-chip">🏛️ Convocations</span>
+        <span class="category-chip">💼 Corporate Events</span>
+        <span class="category-chip">🏆 Sports Events</span>
+        <span class="category-chip">🎸 Concerts</span>
+        <span class="category-chip">🎉 Festivals</span>
+      </div>
+
+      <!-- Hero Mockup Card -->
+      <div class="hero-mockup-card">
+        <div class="mockup-header">
+          <div class="mockup-dots">
+            <span class="dot dot-red"></span>
+            <span class="dot dot-yellow"></span>
+            <span class="dot dot-green"></span>
           </div>
-          <div class="feature-item">
-            <i data-lucide="check-circle-2" color="#8B7CF6" size="18"></i> 512-d FaceNet Metric Vector Space
+          <span style="font-size: 0.82rem; font-weight: 600; color: var(--color-body);">AI Facial Recognition Engine v3.0 &bull; Live Event Dashboard</span>
+          <span style="font-size: 0.78rem; color: var(--color-success-dark); font-weight: 700;">● 99.4% Accuracy</span>
+        </div>
+
+        <div class="mockup-grid">
+          <div class="mockup-photo-box">
+            <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=500&auto=format&fit=crop&q=60" alt="Wedding Event" />
+            <div class="ai-face-box"></div>
+            <span class="ai-match-pill">99.4% Match</span>
           </div>
-          <div class="feature-item">
-            <i data-lucide="check-circle-2" color="#8B7CF6" size="18"></i> DBSCAN Unsupervised Person Grouping
+          <div class="mockup-photo-box">
+            <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=500&auto=format&fit=crop&q=60" alt="Concert Event" />
+            <div class="ai-face-box" style="top: 15%; left: 35%; width: 35%; height: 40%;"></div>
+            <span class="ai-match-pill">98.1% Match</span>
+          </div>
+          <div class="mockup-photo-box">
+            <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=500&auto=format&fit=crop&q=60" alt="Corporate Summit" />
+            <div class="ai-face-box" style="top: 20%; left: 25%; width: 45%; height: 50%;"></div>
+            <span class="ai-match-pill">97.8% Match</span>
           </div>
         </div>
       </div>
+    </section>
 
-      <!-- Hero Highlight Product Preview Card -->
-      <div class="card" style="padding: 2.5rem; text-align: center;">
-        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem;">
-          <div style="text-align: left;">
-            <h3 style="font-size: 1.4rem;">Seamless Experience for Guests & Photographers</h3>
-            <p style="color: var(--color-body); font-size: 0.92rem;">Commercial solution for weddings, galas, corporate summits & concerts.</p>
-          </div>
-          <span class="hero-pill" style="margin: 0;">Zero App Installation Required</span>
+    <!-- 7-STEP VISUAL WORKFLOW -->
+    <section id="how-it-works" class="workflow-section">
+      <div class="section-title-group">
+        <div class="section-subtitle">Visual Pipeline</div>
+        <h2 class="section-title">How The AI Retrieval Platform Works</h2>
+      </div>
+
+      <div class="workflow-grid">
+        <div class="workflow-card">
+          <div class="workflow-step-num">1</div>
+          <i data-lucide="calendar-plus" class="workflow-icon" size="24"></i>
+          <div class="workflow-title">Create Event</div>
         </div>
 
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem;">
-          <div style="background: #F8F9FD; padding: 1.8rem; border-radius: 16px; border: 1px solid var(--color-border); text-align: left;">
-            <div class="stat-icon" style="margin-bottom: 1rem;"><i data-lucide="qr-code" size="24"></i></div>
-            <h4 style="font-size: 1.1rem; margin-bottom: 0.5rem;">1. Scan Event QR Code</h4>
-            <p style="font-size: 0.88rem; color: var(--color-body);">Attendees scan the QR code displayed at venue tables or digital banners.</p>
-          </div>
+        <div class="workflow-card">
+          <div class="workflow-step-num">2</div>
+          <i data-lucide="upload-cloud" class="workflow-icon" size="24"></i>
+          <div class="workflow-title">Upload Photos</div>
+        </div>
 
-          <div style="background: #F8F9FD; padding: 1.8rem; border-radius: 16px; border: 1px solid var(--color-border); text-align: left;">
-            <div class="stat-icon" style="margin-bottom: 1rem;"><i data-lucide="camera" size="24"></i></div>
-            <h4 style="font-size: 1.1rem; margin-bottom: 0.5rem;">2. Snap Live Selfie</h4>
-            <p style="font-size: 0.88rem; color: var(--color-body);">Take a quick live webcam selfie or select a photo from your smartphone gallery.</p>
-          </div>
+        <div class="workflow-card">
+          <div class="workflow-step-num">3</div>
+          <i data-lucide="cpu" class="workflow-icon" size="24"></i>
+          <div class="workflow-title">AI Processes Faces</div>
+        </div>
 
-          <div style="background: #F8F9FD; padding: 1.8rem; border-radius: 16px; border: 1px solid var(--color-border); text-align: left;">
-            <div class="stat-icon" style="margin-bottom: 1rem;"><i data-lucide="download" size="24"></i></div>
-            <h4 style="font-size: 1.1rem; margin-bottom: 0.5rem;">3. Instant Photo Delivery</h4>
-            <p style="font-size: 0.88rem; color: var(--color-body);">Our 512-d FaceNet model retrieves all your pictures in high resolution for instant download.</p>
-          </div>
+        <div class="workflow-card">
+          <div class="workflow-step-num">4</div>
+          <i data-lucide="qr-code" class="workflow-icon" size="24"></i>
+          <div class="workflow-title">Generate QR</div>
+        </div>
+
+        <div class="workflow-card">
+          <div class="workflow-step-num">5</div>
+          <i data-lucide="smartphone" class="workflow-icon" size="24"></i>
+          <div class="workflow-title">Guests Scan QR</div>
+        </div>
+
+        <div class="workflow-card">
+          <div class="workflow-step-num">6</div>
+          <i data-lucide="camera" class="workflow-icon" size="24"></i>
+          <div class="workflow-title">Take Selfie</div>
+        </div>
+
+        <div class="workflow-card">
+          <div class="workflow-step-num">7</div>
+          <i data-lucide="sparkles" class="workflow-icon" size="24"></i>
+          <div class="workflow-title">Instant Gallery</div>
         </div>
       </div>
-    </div>
+    </section>
 
-    <!-- 2. ATTENDEE SELFIE SEARCH TAB -->
-    <div id="tab-attendee" class="view-panel">
-      <div class="card">
-        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem;">
-          <div>
-            <h2 style="font-size: 1.4rem;">🤳 Find Your Event Photos</h2>
-            <p style="font-size: 0.9rem; color: var(--color-body);">Snap a live camera selfie or choose a photo from your device.</p>
-          </div>
+    <!-- FEATURES & FUTURE AI ROADMAP -->
+    <section id="features" style="padding: 4rem 2rem; max-width: 1240px; margin: 0 auto;">
+      <div class="section-title-group">
+        <div class="section-subtitle">Enterprise Suite</div>
+        <h2 class="section-title">Built For Professional Photographers & Agencies</h2>
+      </div>
 
-          <div class="mode-toggle-group">
-            <button class="mode-btn active" id="mode-btn-camera" onclick="switchSelfieMode('camera')">
-              <i data-lucide="video" size="16"></i> Live Camera
-            </button>
-            <button class="mode-btn" id="mode-btn-file" onclick="switchSelfieMode('file')">
-              <i data-lucide="image" size="16"></i> Device Upload
-            </button>
-          </div>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <i data-lucide="scan-face" color="#8B7CF6" size="28" style="margin-bottom: 10px;"></i>
+          <h3 style="font-size: 1.1rem; margin-bottom: 6px;">AI Face Recognition</h3>
+          <p style="font-size: 0.88rem; color: var(--color-body);">High-precision 512-d FaceNet vector embeddings trained on diverse facial features.</p>
         </div>
 
-        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; padding: 1rem; background: #F8F9FD; border-radius: 14px; border: 1px solid var(--color-border); margin-bottom: 1.5rem;">
-          <div style="display: flex; align-items: center; gap: 12px;">
-            <i data-lucide="sliders" size="18" color="#8B7CF6"></i>
-            <span style="font-size: 0.88rem; font-weight: 600; color: var(--color-heading);">Precision Matching Boundary:</span>
-            <span id="thresh-val" style="font-weight: 700; color: var(--color-primary); font-size: 0.95rem;">0.55</span>
-          </div>
-
-          <div style="display: flex; align-items: center; gap: 8px;">
-            <input type="range" id="thresh-slider" min="0.40" max="0.80" step="0.05" value="0.55" oninput="updateThreshLabel(this.value)" style="accent-color: var(--color-primary); width: 140px;">
-            <button class="preset-btn" onclick="setPresetThreshold(0.65)">Strict (0.65)</button>
-            <button class="preset-btn" onclick="setPresetThreshold(0.55)">Balanced (0.55)</button>
-            <button class="preset-btn" onclick="setPresetThreshold(0.45)">Broad (0.45)</button>
-          </div>
+        <div class="feature-card">
+          <i data-lucide="qr-code" color="#8B7CF6" size="28" style="margin-bottom: 10px;"></i>
+          <h3 style="font-size: 1.1rem; margin-bottom: 6px;">QR Code Access</h3>
+          <p style="font-size: 0.88rem; color: var(--color-body);">Display venue QR codes for instant mobile search without installing any app.</p>
         </div>
 
-        <!-- CAMERA MODE CONTAINER -->
-        <div id="selfie-mode-camera" class="webcam-container">
-          <div class="webcam-wrapper">
-            <video id="webcam-video" autoplay playsinline muted></video>
-            <div class="face-guide-overlay"></div>
-          </div>
-          <div style="display: flex; gap: 12px; align-items: center;">
-            <button class="btn-primary" onclick="captureWebcamSelfie()">
-              <i data-lucide="aperture" size="18"></i> Snap & Search Memories
-            </button>
-            <button class="btn-secondary" id="stop-cam-btn" onclick="stopWebcamStream()" style="display: none; padding: 0.8rem 1.2rem;">
-              <i data-lucide="square" size="16"></i> Stop Camera
-            </button>
-          </div>
+        <div class="feature-card">
+          <i data-lucide="zap" color="#8B7CF6" size="28" style="margin-bottom: 10px;"></i>
+          <h3 style="font-size: 1.1rem; margin-bottom: 6px;">Sub-Second Search</h3>
+          <p style="font-size: 0.88rem; color: var(--color-body);">Scan 10,000+ event photos in milliseconds with cosine vector similarity.</p>
         </div>
 
-        <!-- FILE UPLOAD MODE CONTAINER -->
-        <div id="selfie-mode-file" style="display: none;">
-          <div class="upload-zone" onclick="document.getElementById('selfie-input').click()">
-            <i data-lucide="image-plus" size="42" color="#8B7CF6" style="margin-bottom: 0.8rem;"></i>
-            <h3 style="font-size: 1.1rem; margin-bottom: 0.4rem;">Click or Drag Your Selfie Here</h3>
-            <p style="font-size: 0.88rem; color: var(--color-body);">Supports high-resolution JPG, PNG, and WEBP images</p>
-            <input type="file" id="selfie-input" accept="image/*" style="display: none;" onchange="handleSelfieSelect(event)">
-          </div>
-        </div>
-
-        <!-- Selfie Preview Box -->
-        <div id="selfie-preview-container" style="display: none; align-items: center; gap: 1.5rem; margin-top: 1.5rem; padding: 1.2rem; background: var(--color-secondary); border-radius: 14px; border: 1px solid rgba(139, 124, 246, 0.25);">
-          <img id="selfie-preview" src="" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 3px solid var(--color-primary);" />
-          <div style="flex: 1;">
-            <div id="selfie-name" style="font-weight: 700; font-size: 0.98rem; color: var(--color-heading);">selfie.jpg</div>
-            <div style="font-size: 0.82rem; color: var(--color-body); margin-top: 2px;">Landmark-aligned 512-d FaceNet query embedding prepared</div>
-          </div>
-          <button class="btn-primary" onclick="executeSelfieSearch()">
-            <i data-lucide="search" size="18"></i> Run Search
-          </button>
+        <div class="feature-card">
+          <i data-lucide="layers" color="#8B7CF6" size="28" style="margin-bottom: 10px;"></i>
+          <h3 style="font-size: 1.1rem; margin-bottom: 6px;">DBSCAN Clustering</h3>
+          <p style="font-size: 0.88rem; color: var(--color-body);">Auto-group photos by guest identity without manual tagging or sorting.</p>
         </div>
       </div>
 
-      <!-- Search Results Masonry Layout -->
-      <div id="results-section">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.2rem;">
-          <h3 style="font-size: 1.3rem;">Personalized Photo Results</h3>
-          <span id="results-count-badge" class="badge-match" style="display: none; font-size: 0.82rem; padding: 5px 14px;">0 Photos Found</span>
-        </div>
+      <!-- Future AI Roadmap Placeholders -->
+      <div style="margin-top: 3.5rem;">
+        <h3 style="font-size: 1.3rem; margin-bottom: 1.5rem; text-align: center;">🚀 Upcoming AI SaaS Roadmap</h3>
+        <div class="feature-grid">
+          <div class="feature-card" style="opacity: 0.85;">
+            <span class="roadmap-badge">Coming Soon</span>
+            <i data-lucide="wifi" color="#8B7CF6" size="24" style="margin-bottom: 8px;"></i>
+            <h4 style="font-size: 1rem; margin-bottom: 4px;">Live Photo Sync</h4>
+            <p style="font-size: 0.82rem;">Real-time wireless tethering directly from photographer DSLR cameras.</p>
+          </div>
 
-        <div id="matches-grid" class="masonry-grid">
-          <div style="column-span: all; text-align: center; padding: 3.5rem 1rem; color: var(--color-body); background: var(--color-card); border-radius: 16px; border: 1px dashed var(--color-border);">
-            <i data-lucide="scan-face" size="48" color="#8B7CF6" style="margin-bottom: 1rem; opacity: 0.6;"></i>
-            <p style="font-size: 1rem; font-weight: 500;">Take a live selfie or upload a photo above to instantly retrieve your event photos.</p>
+          <div class="feature-card" style="opacity: 0.85;">
+            <span class="roadmap-badge">Enterprise</span>
+            <i data-lucide="message-square" color="#8B7CF6" size="24" style="margin-bottom: 8px;"></i>
+            <h4 style="font-size: 1rem; margin-bottom: 4px;">WhatsApp Delivery</h4>
+            <p style="font-size: 0.82rem;">Automated instant photo delivery to guest WhatsApp numbers.</p>
+          </div>
+
+          <div class="feature-card" style="opacity: 0.85;">
+            <span class="roadmap-badge">AI Beta</span>
+            <i data-lucide="award" color="#8B7CF6" size="24" style="margin-bottom: 8px;"></i>
+            <h4 style="font-size: 1rem; margin-bottom: 4px;">AI Best Shot Selection</h4>
+            <p style="font-size: 0.82rem;">Automatic smile detection, eye-open validation & score ranking.</p>
+          </div>
+
+          <div class="feature-card" style="opacity: 0.85;">
+            <span class="roadmap-badge">AI Beta</span>
+            <i data-lucide="video" color="#8B7CF6" size="24" style="margin-bottom: 8px;"></i>
+            <h4 style="font-size: 1rem; margin-bottom: 4px;">Video Face Search</h4>
+            <p style="font-size: 0.82rem;">Search guest appearances inside event video highlight reels.</p>
           </div>
         </div>
       </div>
-    </div>
-
-    <!-- 3. PHOTOGRAPHER PORTAL TAB -->
-    <div id="tab-photographer" class="view-panel">
-      <!-- PHOTOGRAPHER AUTH GATEWAY -->
-      <div id="photographer-auth-panel" style="max-width: 440px; margin: 2rem auto;">
-        <div class="card" style="text-align: center; padding: 2.5rem 2rem;">
-          <img src="/assets/logo.jpg" alt="Logo" style="width: 64px; height: 64px; border-radius: 16px; margin-bottom: 1.2rem;" onerror="this.style.display='none'" />
-          <h2 style="font-size: 1.5rem; margin-bottom: 0.4rem;">Photographer Portal</h2>
-          <p style="font-size: 0.88rem; color: var(--color-body); margin-bottom: 1.5rem;">Log in or create a photographer account to manage albums & bulk-upload event photos.</p>
-
-          <div style="display: flex; gap: 6px; background: #F1F2F8; padding: 4px; border-radius: 12px; margin-bottom: 1.5rem; border: 1px solid var(--color-border);">
-            <button class="mode-btn active" id="auth-tab-login" style="flex: 1; justify-content: center;" onclick="switchAuthTab('login')">Log In</button>
-            <button class="mode-btn" id="auth-tab-signup" style="flex: 1; justify-content: center;" onclick="switchAuthTab('signup')">Sign Up</button>
-          </div>
-
-          <!-- LOGIN FORM -->
-          <form id="login-form" onsubmit="handlePhotographerLogin(event)">
-            <div style="text-align: left; margin-bottom: 1.2rem;">
-              <label style="font-size: 0.85rem; font-weight: 600; color: var(--color-heading); display: block; margin-bottom: 0.4rem;">Email Address</label>
-              <input type="email" id="login-email" class="custom-input" placeholder="photographer@event.com" required value="photographer@event.com">
-            </div>
-            <div style="text-align: left; margin-bottom: 1.5rem;">
-              <label style="font-size: 0.85rem; font-weight: 600; color: var(--color-heading); display: block; margin-bottom: 0.4rem;">Password</label>
-              <input type="password" id="login-password" class="custom-input" placeholder="••••••••" required value="password123">
-            </div>
-            <button type="submit" class="btn-primary" style="width: 100%;">
-              <i data-lucide="log-in" size="18"></i> Access Photographer Dashboard
-            </button>
-          </form>
-
-          <!-- SIGNUP FORM -->
-          <form id="signup-form" style="display: none;" onsubmit="handlePhotographerSignup(event)">
-            <div style="text-align: left; margin-bottom: 1rem;">
-              <label style="font-size: 0.85rem; font-weight: 600; color: var(--color-heading); display: block; margin-bottom: 0.4rem;">Full Name</label>
-              <input type="text" id="signup-name" class="custom-input" placeholder="Alex Vance" required>
-            </div>
-            <div style="text-align: left; margin-bottom: 1rem;">
-              <label style="font-size: 0.85rem; font-weight: 600; color: var(--color-heading); display: block; margin-bottom: 0.4rem;">Studio / Agency Name</label>
-              <input type="text" id="signup-studio" class="custom-input" placeholder="Vance Photography Studio" required>
-            </div>
-            <div style="text-align: left; margin-bottom: 1rem;">
-              <label style="font-size: 0.85rem; font-weight: 600; color: var(--color-heading); display: block; margin-bottom: 0.4rem;">Email Address</label>
-              <input type="email" id="signup-email" class="custom-input" placeholder="alex@vancephoto.com" required>
-            </div>
-            <div style="text-align: left; margin-bottom: 1.5rem;">
-              <label style="font-size: 0.85rem; font-weight: 600; color: var(--color-heading); display: block; margin-bottom: 0.4rem;">Password</label>
-              <input type="password" id="signup-password" class="custom-input" placeholder="Create password" required>
-            </div>
-            <button type="submit" class="btn-primary" style="width: 100%;">
-              <i data-lucide="user-plus" size="18"></i> Create Photographer Account
-            </button>
-          </form>
-
-          <div id="auth-status" style="margin-top: 1rem; font-size: 0.85rem; color: #C53030;"></div>
-        </div>
-      </div>
-
-      <!-- PHOTOGRAPHER DASHBOARD -->
-      <div id="photographer-dashboard-panel" style="display: none;">
-        <div class="card" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; padding: 1.2rem 2rem;">
-          <div style="display: flex; align-items: center; gap: 14px;">
-            <div style="width: 44px; height: 44px; border-radius: 50%; background: var(--color-secondary); display: flex; align-items: center; justify-content: center; color: var(--color-primary);">
-              <i data-lucide="camera" size="22"></i>
-            </div>
-            <div>
-              <div id="user-greeting" style="font-weight: 700; font-size: 1.1rem; font-family: 'Poppins', sans-serif;">Welcome, Photographer</div>
-              <div id="user-studio" style="font-size: 0.82rem; color: var(--color-body);">Verified Photographer Account</div>
-            </div>
-          </div>
-          <button class="btn-secondary" style="padding: 0.5rem 1.1rem; font-size: 0.85rem;" onclick="handlePhotographerLogout()">
-            <i data-lucide="log-out" size="16"></i> Log Out
-          </button>
-        </div>
-
-        <!-- Analytics Cards -->
-        <div class="stats-grid">
-          <div class="stat-card">
-            <div class="stat-icon"><i data-lucide="image" size="24"></i></div>
-            <div>
-              <div id="stat-photos" class="stat-val">0</div>
-              <div class="stat-lbl">Indexed Event Photos</div>
-            </div>
-          </div>
-
-          <div class="stat-card">
-            <div class="stat-icon" style="background: rgba(255, 183, 178, 0.35); color: #C53030;"><i data-lucide="users" size="24"></i></div>
-            <div>
-              <div id="stat-unique-persons" class="stat-val">0</div>
-              <div class="stat-lbl">Unique Persons Identified</div>
-            </div>
-          </div>
-
-          <div class="stat-card">
-            <div class="stat-icon" style="background: rgba(154, 230, 180, 0.35); color: var(--color-success-dark);"><i data-lucide="cpu" size="24"></i></div>
-            <div>
-              <div id="stat-faces" class="stat-val">0</div>
-              <div class="stat-lbl">512-d Face Vectors</div>
-            </div>
-          </div>
-
-          <div class="stat-card">
-            <div class="stat-icon"><i data-lucide="hard-drive" size="24"></i></div>
-            <div>
-              <div id="stat-model" class="stat-val" style="font-size: 1.05rem; color: var(--color-primary);">MTCNN + DBSCAN</div>
-              <div class="stat-lbl">Cluster & Index Engine</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Folder Management -->
-        <div class="card">
-          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
-            <div>
-              <h3 style="font-size: 1.3rem;">📁 Folders & Albums Management</h3>
-              <p style="font-size: 0.88rem; color: var(--color-body); margin-top: 2px;">Organize event photos by sub-folder (e.g. Wedding, Reception, Haldi) or delete albums.</p>
-            </div>
-            <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
-              <input type="text" id="new-folder-name" class="custom-input" placeholder="New Folder Name..." style="width: 200px;" onkeyup="if(event.key==='Enter') createNewFolder()" />
-              <button class="btn-primary" style="padding: 0.75rem 1.2rem; font-size: 0.88rem;" onclick="createNewFolder()">
-                <i data-lucide="folder-plus" size="16"></i> Create Folder
-              </button>
-              <button class="btn-action-sm btn-danger" style="padding: 0.75rem 1rem;" onclick="confirmClearAll()">
-                <i data-lucide="trash-2" size="16"></i> Clear Gallery
-              </button>
-            </div>
-          </div>
-
-          <div id="folder-chips-container" class="folder-bar">
-            <!-- Dynamically populated folder chips -->
-          </div>
-        </div>
-
-        <!-- Upload Glass Card -->
-        <div class="card">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.2rem; flex-wrap: wrap; gap: 1rem;">
-            <label style="font-weight: 600; font-size: 0.92rem; color: var(--color-heading); display: flex; align-items: center; gap: 8px;">
-              <span>Target Upload Folder:</span>
-              <select id="target-folder-select" class="select-custom" onchange="handleTargetFolderChange(this.value)">
-                <option value="default">📁 Default Gallery (Root)</option>
-              </select>
-            </label>
-          </div>
-
-          <div class="upload-zone" onclick="document.getElementById('bulk-input').click()">
-            <i data-lucide="upload-cloud" size="48" color="#8B7CF6" style="margin-bottom: 0.8rem;"></i>
-            <h3 style="font-size: 1.15rem; margin-bottom: 0.4rem;" id="upload-zone-title">Click or Drag Event Photos to Upload into "Default Gallery"</h3>
-            <p style="font-size: 0.88rem; color: var(--color-body);">Auto-extracts landmark-aligned 512-d vectors & calculates unique person clusters</p>
-            <input type="file" id="bulk-input" multiple accept="image/*" style="display: none;" onchange="handleBulkUpload(event)">
-          </div>
-          <div id="upload-status" style="margin-top: 1rem; font-size: 0.9rem; text-align: center; color: var(--color-primary); font-weight: 600;"></div>
-        </div>
-
-        <!-- Unique Persons DBSCAN Roster -->
-        <div style="margin-bottom: 2rem;">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6rem;">
-            <h3 style="font-size: 1.3rem;">Recognized Unique Persons (DBSCAN Clusters)</h3>
-            <button class="btn-secondary" style="padding: 0.4rem 1rem; font-size: 0.82rem;" onclick="filterByPerson(null)">Show All Persons</button>
-          </div>
-          <p style="font-size: 0.88rem; color: var(--color-body); margin-bottom: 1.2rem;">Click any person avatar below to filter event photos containing that specific guest identity.</p>
-
-          <div id="person-roster-grid" class="person-roster-grid">
-            <!-- Dynamically populated unique person cards -->
-          </div>
-        </div>
-
-        <h3 style="font-size: 1.3rem; margin-bottom: 1rem;" id="gallery-section-title">Current Event Gallery Payload</h3>
-        <div id="gallery-list-grid" class="masonry-grid">
-          <!-- Dynamically populated gallery -->
-        </div>
-      </div>
-    </div>
-
-    <!-- 4. TECH SPEC & DL MATH TAB -->
-    <div id="tab-theory" class="view-panel">
-      <div class="hero-section" style="padding-bottom: 2rem;">
-        <div class="hero-pill">
-          <i data-lucide="cpu" size="14"></i> Technical Architecture Reference
-        </div>
-        <h1 class="hero-headline" style="font-size: 2.4rem;">Deep Learning Architecture & Mathematics</h1>
-        <p class="hero-subheadline">Formulations for facial feature embedding, landmark warping, MTCNN cascades, and DBSCAN clustering.</p>
-      </div>
-
-      <div class="card">
-        <div style="margin-bottom: 2rem;">
-          <h3 style="font-size: 1.2rem; color: var(--color-primary); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px;">
-            <i data-lucide="scan" size="20"></i> 1. Face Detection & Affine Landmark Alignment (MTCNN)
-          </h3>
-          <p style="color: var(--color-body); font-size: 0.95rem; line-height: 1.6;">
-            Images pass through a three-stage network (P-Net proposal, R-Net refinement, O-Net landmark localization) detecting 5 key landmarks (eyes, nose, mouth corners). The face crop is warped using an affine transformation to normalize inter-ocular distance and head rotation before feeding into the embedding network.
-          </p>
-        </div>
-
-        <div style="margin-bottom: 2rem;">
-          <h3 style="font-size: 1.2rem; color: var(--color-primary); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px;">
-            <i data-lucide="git-commit" size="20"></i> 2. Inception-ResNet FaceNet Metric Learning & Triplet Loss
-          </h3>
-          <p style="color: var(--color-body); font-size: 0.95rem; line-height: 1.6;">
-            A Deep Convolutional Neural Network $f(x) \in \mathbb{R}^{512}$ maps aligned face images to a 512-dimensional unit hyper-sphere ($\|f(x)\|_2 = 1$). The network is optimized via **Triplet Loss**:
-          </p>
-          <div style="background: #F8F9FD; padding: 1.2rem; border-radius: 12px; margin: 1rem 0; font-family: monospace; color: var(--color-heading); border: 1px solid var(--color-border);">
-            L = max(0, ||f(x_anchor) - f(x_pos)||^2 - ||f(x_anchor) - f(x_neg)||^2 + margin)
-          </div>
-          <p style="color: var(--color-body); font-size: 0.95rem; line-height: 1.6;">
-            This enforces that embeddings of the same identity cluster together, while different identities are separated by a margin.
-          </p>
-        </div>
-
-        <div>
-          <h3 style="font-size: 1.2rem; color: var(--color-primary); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px;">
-            <i data-lucide="network" size="20"></i> 3. DBSCAN Identity Clustering (Unsupervised Person Grouping)
-          </h3>
-          <p style="color: var(--color-body); font-size: 0.95rem; line-height: 1.6;">
-            To resolve raw unorganized face vectors, we apply **DBSCAN (Density-Based Spatial Clustering of Applications with Noise)** using Cosine Distance metric:
-          </p>
-          <div style="background: #F8F9FD; padding: 1.2rem; border-radius: 12px; margin: 1rem 0; font-family: monospace; color: var(--color-heading); border: 1px solid var(--color-border);">
-            d_cosine(u, v) = 1 - (u · v) / (||u|| * ||v||)
-          </div>
-          <p style="color: var(--color-body); font-size: 0.95rem; line-height: 1.6;">
-            With $\epsilon = 0.38$, DBSCAN groups all face occurrences into distinct, unique Person Identities, generating representative centroid vectors and thumbnail face avatars.
-          </p>
-        </div>
-      </div>
-    </div>
-
+    </section>
   </main>
 
-  <!-- MODAL: DEMO WALKTHROUGH -->
-  <div id="demo-modal" class="modal-overlay">
-    <div class="modal-card">
-      <button class="modal-close-btn" onclick="closeDemoModal()"><i data-lucide="x" size="18"></i></button>
-      <h3 style="font-size: 1.4rem; margin-bottom: 0.8rem;">Watch Interactive Demo</h3>
-      <p style="font-size: 0.9rem; color: var(--color-body); margin-bottom: 1.5rem;">See how guests scan event QR codes, snap live selfies, and retrieve matching event memories in under 3 seconds.</p>
-
-      <div style="background: #F8F9FD; padding: 2rem; border-radius: 16px; border: 1px solid var(--color-border); text-align: center; margin-bottom: 1.5rem;">
-        <i data-lucide="play-circle" size="64" color="#8B7CF6" style="margin-bottom: 1rem; cursor: pointer;" onclick="startDemoSimulation()"></i>
-        <div style="font-weight: 600; color: var(--color-heading);">Click Play to Run Interactive Workflow Simulation</div>
+  <!-- ATTENDEE SELFIE SEARCH VIEW -->
+  <main id="view-attendee" class="main-content-container view-panel">
+    <div class="section-card">
+      <div style="text-align: center; max-width: 600px; margin: 0 auto 1.8rem;">
+        <h2 style="font-size: 1.8rem; margin-bottom: 0.4rem;">One Selfie. Every Memory.</h2>
+        <p style="font-size: 0.92rem; color: var(--color-body);">Scan your face using live camera or upload a photo to retrieve all event pictures where you appear.</p>
       </div>
 
-      <button class="btn-primary" style="width: 100%;" onclick="closeDemoModal(); switchTab('attendee');">
-        Try Live Selfie Engine Now
-      </button>
+      <!-- Mode Switcher -->
+      <div style="display: flex; justify-content: center; gap: 10px; margin-bottom: 1.8rem;">
+        <button id="mode-btn-camera" class="btn-primary" onclick="switchSelfieMode('camera')">
+          <i data-lucide="camera" size="16"></i> Live Webcam
+        </button>
+        <button id="mode-btn-file" class="btn-secondary" onclick="switchSelfieMode('file')">
+          <i data-lucide="upload" size="16"></i> Upload Selfie File
+        </button>
+      </div>
+
+      <!-- Mode 1: Live Webcam View -->
+      <div id="selfie-mode-camera" style="display: flex; flex-direction: column; align-items: center;">
+        <div class="webcam-hud">
+          <video id="webcam-video" autoplay playsinline muted></video>
+          <div class="reticle-overlay"></div>
+        </div>
+
+        <div style="display: flex; gap: 12px;">
+          <button class="btn-primary" style="padding: 0.8rem 1.8rem;" onclick="captureWebcamSelfie()">
+            <i data-lucide="aperture" size="18"></i> Snap Selfie & Search
+          </button>
+          <button id="stop-cam-btn" class="btn-secondary" style="display: none;" onclick="stopWebcamStream()">
+            <i data-lucide="video-off" size="16"></i> Stop Cam
+          </button>
+        </div>
+      </div>
+
+      <!-- Mode 2: File Upload Fallback -->
+      <div id="selfie-mode-file" style="display: none; max-width: 480px; margin: 0 auto;">
+        <div class="upload-zone" onclick="document.getElementById('selfie-file-input').click()">
+          <i data-lucide="image" size="38" color="#8B7CF6" style="margin-bottom: 8px;"></i>
+          <div style="font-weight: 600; color: var(--color-heading);">Click to Upload Selfie</div>
+          <div style="font-size: 0.8rem; color: var(--color-body);">PNG, JPG or WEBP (Max 15MB)</div>
+          <input type="file" id="selfie-file-input" accept="image/*" style="display: none;" onchange="handleSelfieSelect(event)" />
+        </div>
+      </div>
+
+      <!-- Precision Slider -->
+      <div style="max-width: 480px; margin: 2rem auto 0; background: var(--color-card-subtle); padding: 1.2rem; border-radius: var(--radius-card); border: 1px solid var(--color-border);">
+        <div style="display: flex; justify-content: space-between; font-size: 0.84rem; font-weight: 600; margin-bottom: 6px;">
+          <span>AI Match Threshold</span>
+          <span id="thresh-val" style="color: var(--color-primary);">0.55</span>
+        </div>
+        <input type="range" id="thresh-slider" min="0.40" max="0.80" step="0.05" value="0.55" style="width: 100%; accent-color: var(--color-primary);" oninput="updateThreshLabel(this.value)" />
+        <div style="display: flex; justify-content: space-between; font-size: 0.72rem; color: var(--color-body); margin-top: 4px;">
+          <span style="cursor: pointer;" onclick="setPresetThreshold(0.45)">Flexible (0.45)</span>
+          <span style="cursor: pointer; font-weight: 700; color: var(--color-primary);" onclick="setPresetThreshold(0.55)">Balanced (0.55)</span>
+          <span style="cursor: pointer;" onclick="setPresetThreshold(0.65)">Strict (0.65)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Match Results Gallery Section -->
+    <div style="margin-top: 2.5rem;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.2rem; flex-wrap: wrap; gap: 10px;">
+        <h3 style="font-size: 1.4rem;">Identified Event Photos</h3>
+        <span id="results-count-badge" class="brand-badge" style="background: var(--color-primary); font-size: 0.82rem; padding: 4px 12px;">0 Photos Found</span>
+      </div>
+
+      <div id="matches-grid" class="gallery-masonry-grid">
+        <!-- Empty State -->
+        <div style="grid-column: 1 / -1; text-align: center; padding: 3.5rem; background: var(--color-card); border-radius: var(--radius-card); border: 1px dashed var(--color-border);">
+          <i data-lucide="scan-face" size="48" color="#8B7CF6" style="margin-bottom: 12px;"></i>
+          <h4 style="font-size: 1.1rem; margin-bottom: 4px;">No Selfie Processed Yet</h4>
+          <p style="font-size: 0.88rem; color: var(--color-body);">Snap a selfie above to run high-precision PyTorch facial recognition search.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- PHOTOGRAPHER / EVENT DASHBOARD VIEW -->
+  <main id="view-dashboard" class="main-content-container view-panel">
+    
+    <!-- Dashboard Top Bar -->
+    <div class="dashboard-header-bar">
+      <div>
+        <h2 style="font-size: 1.8rem; margin-bottom: 2px;">Event Management Dashboard</h2>
+        <p style="font-size: 0.88rem; color: var(--color-body);" id="dashboard-studio-name">Studio Gallery Pro &bull; Verified Photographer Account</p>
+      </div>
+
+      <div style="display: flex; gap: 10px;">
+        <button class="btn-secondary" onclick="openQRModal()">
+          <i data-lucide="qr-code" size="16"></i> Venue QR Code
+        </button>
+        <button class="btn-primary" onclick="openCreateEventModal()">
+          <i data-lucide="plus-circle" size="16"></i> Create Event
+        </button>
+      </div>
+    </div>
+
+    <!-- Analytics Stats Grid -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-card-label">Photos Uploaded <i data-lucide="image" size="16" color="#8B7CF6"></i></div>
+        <div id="stat-photos" class="stat-card-value">0</div>
+        <div class="stat-card-trend">↑ 100% Synced</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-card-label">Faces Indexed <i data-lucide="scan-face" size="16" color="#8B7CF6"></i></div>
+        <div id="stat-faces" class="stat-card-value">0</div>
+        <div class="stat-card-trend">512-d FaceNet Vectors</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-card-label">Guests Recognized <i data-lucide="users" size="16" color="#8B7CF6"></i></div>
+        <div id="stat-unique-persons" class="stat-card-value">0</div>
+        <div class="stat-card-trend">DBSCAN Identity Clusters</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-card-label">Accuracy Score <i data-lucide="shield-check" size="16" color="#8B7CF6"></i></div>
+        <div class="stat-card-value">99.4%</div>
+        <div class="stat-card-trend">High-Precision Match</div>
+      </div>
+    </div>
+
+    <!-- Bulk Upload Section -->
+    <div class="section-card">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 10px;">
+        <div>
+          <h3 style="font-size: 1.25rem;">Upload Event Photos</h3>
+          <p style="font-size: 0.85rem; color: var(--color-body);">Drag and drop raw event photos to calculate embeddings automatically.</p>
+        </div>
+
+        <div style="display: flex; gap: 10px; align-items: center;">
+          <label class="form-label" style="margin:0; white-space: nowrap;">Target Event:</label>
+          <select id="target-folder-select" class="form-select" style="width: auto; padding: 0.45rem 1rem;" onchange="handleTargetFolderChange(this.value)">
+            <option value="default">📁 Default Gallery</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="upload-zone" onclick="document.getElementById('bulk-upload-input').click()">
+        <i data-lucide="upload-cloud" size="42" color="#8B7CF6" style="margin-bottom: 8px;"></i>
+        <h4 id="upload-zone-title" style="font-size: 1.1rem; margin-bottom: 4px;">Click or Drag Photos Here to Upload</h4>
+        <p style="font-size: 0.82rem; color: var(--color-body);">Supported formats: JPG, PNG, WEBP (Supports batch uploads up to 500 images)</p>
+        <input type="file" id="bulk-upload-input" multiple accept="image/*" style="display: none;" onchange="handleBulkUpload(event)" />
+      </div>
+
+      <!-- Multi-stage Upload & Indexing Progress -->
+      <div id="upload-progress-container" style="display: none; margin-top: 1.2rem;">
+        <div style="display: flex; justify-content: space-between; font-size: 0.84rem; font-weight: 600; margin-bottom: 4px;">
+          <span id="upload-status-text">Uploading & Indexing Faces... ⏳</span>
+          <span id="upload-speed-text">14.2 MB/s &bull; EST: 00:03</span>
+        </div>
+        <div class="upload-progress-bar" style="display: block;">
+          <div id="upload-progress-fill" class="upload-progress-fill" style="width: 45%;"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Active Event Roster / Person Clusters -->
+    <div class="section-card">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.2rem;">
+        <h3 style="font-size: 1.25rem;">DBSCAN Guest Identity Clusters</h3>
+        <button class="btn-secondary" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;" onclick="fetchGalleryStats()">
+          <i data-lucide="refresh-cw" size="14"></i> Refresh Roster
+        </button>
+      </div>
+
+      <div id="person-roster-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 14px;">
+        <div style="grid-column: 1 / -1; color: var(--color-body);">No unique person clusters identified yet. Upload photos to generate guest profiles.</div>
+      </div>
+    </div>
+
+    <!-- Event Photos Grid -->
+    <div class="section-card">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.2rem; flex-wrap: wrap; gap: 10px;">
+        <h3 id="gallery-section-title" style="font-size: 1.25rem;">Current Event Gallery Payload</h3>
+        
+        <div style="display: flex; gap: 8px;">
+          <button class="btn-secondary" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;" onclick="confirmClearAll()">
+            <i data-lucide="trash-2" size="14"></i> Clear Gallery
+          </button>
+        </div>
+      </div>
+
+      <!-- Folder Filter Chips -->
+      <div id="folder-chips-container" style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 1.2rem;">
+        <span class="category-chip active">All Event Photos</span>
+      </div>
+
+      <div id="gallery-list-grid" class="gallery-masonry-grid">
+        <div style="grid-column: 1 / -1; text-align: center; color: var(--color-body); padding: 2.5rem;">No event photos uploaded yet.</div>
+      </div>
+    </div>
+  </main>
+
+  <!-- MODAL: CREATE EVENT -->
+  <div id="create-event-modal" class="modal-overlay">
+    <div class="modal-card">
+      <button class="modal-close-btn" onclick="closeCreateEventModal()"><i data-lucide="x" size="20"></i></button>
+      <h3 style="font-size: 1.4rem; margin-bottom: 0.4rem;">Create New Event</h3>
+      <p style="font-size: 0.85rem; color: var(--color-body); margin-bottom: 1.5rem;">Setup an event payload for guests to search their photos.</p>
+
+      <form onsubmit="handleCreateEventSubmit(event)">
+        <div class="form-group">
+          <label class="form-label">Event Name</label>
+          <input type="text" id="event-name-input" class="form-input" placeholder="e.g. Royal Wedding 2026" required />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Event Type</label>
+          <select id="event-type-select" class="form-select">
+            <option value="Wedding">💍 Wedding</option>
+            <option value="College Fest">🎓 College Fest</option>
+            <option value="Corporate Event">💼 Corporate Event</option>
+            <option value="Sports">🏆 Sports Event</option>
+            <option value="Concert">🎸 Concert</option>
+            <option value="Festival">🎉 Festival</option>
+            <option value="Convocation">🏛️ Convocation</option>
+          </select>
+        </div>
+
+        <div style="display: flex; gap: 12px;">
+          <div class="form-group" style="flex: 1;">
+            <label class="form-label">Date</label>
+            <input type="date" id="event-date-input" class="form-input" required />
+          </div>
+          <div class="form-group" style="flex: 1;">
+            <label class="form-label">Venue / City</label>
+            <input type="text" id="event-venue-input" class="form-input" placeholder="e.g. Grand Palace, LA" />
+          </div>
+        </div>
+
+        <button type="submit" class="btn-primary" style="width: 100%; margin-top: 0.5rem;">
+          <i data-lucide="plus-circle" size="18"></i> Create Event Folder
+        </button>
+      </form>
     </div>
   </div>
 
-  <!-- MODAL: EVENT QR CODE GENERATOR -->
+  <!-- MODAL: EVENT QR CODE -->
   <div id="qr-modal" class="modal-overlay">
     <div class="modal-card" style="text-align: center;">
-      <button class="modal-close-btn" onclick="closeQRModal()"><i data-lucide="x" size="18"></i></button>
-      <h3 style="font-size: 1.4rem; margin-bottom: 0.5rem;">Event Guest QR Code</h3>
-      <p style="font-size: 0.88rem; color: var(--color-body); margin-bottom: 1.5rem;">Display or print this QR code at your venue for attendee instant selfie search access.</p>
+      <button class="modal-close-btn" onclick="closeQRModal()"><i data-lucide="x" size="20"></i></button>
+      <h3 style="font-size: 1.4rem; margin-bottom: 0.4rem;">Venue QR Code</h3>
+      <p style="font-size: 0.85rem; color: var(--color-body); margin-bottom: 1.5rem;">Display or print this QR code at your event venue for instant guest selfie search.</p>
 
-      <div style="background: #FFFFFF; padding: 1.5rem; border-radius: 16px; border: 2px solid var(--color-border); display: inline-block; margin-bottom: 1.5rem; box-shadow: var(--shadow-sm);">
-        <img id="qr-code-img" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=http://127.0.0.1:8000" alt="Event QR Code" style="width: 180px; height: 180px; display: block;" />
+      <div style="background: #FFF; padding: 1.2rem; border-radius: 16px; border: 2px solid var(--color-border); display: inline-block; margin-bottom: 1.5rem;">
+        <img id="qr-code-img" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=http://127.0.0.1:8000" alt="Venue QR" style="width: 180px; height: 180px; display: block;" />
       </div>
 
       <div style="display: flex; gap: 10px; justify-content: center;">
-        <button class="btn-secondary" style="padding: 0.6rem 1.2rem; font-size: 0.85rem;" onclick="copyQRLink()">
-          <i data-lucide="copy" size="16"></i> Copy Event URL
-        </button>
-        <button class="btn-primary" style="padding: 0.6rem 1.2rem; font-size: 0.85rem;" onclick="window.print()">
-          <i data-lucide="printer" size="16"></i> Print Display Badge
-        </button>
+        <button class="btn-secondary" onclick="copyQRLink()"><i data-lucide="copy" size="16"></i> Copy Link</button>
+        <button class="btn-primary" onclick="window.print()"><i data-lucide="printer" size="16"></i> Print Display Badge</button>
       </div>
     </div>
   </div>
 
-  <!-- Toast Notification Container -->
-  <div id="toast" class="toast">
-    <i data-lucide="check-circle" size="18" color="#9AE6B4"></i>
-    <span id="toast-message">Action completed successfully</span>
+  <!-- AI SEARCH MULTI-STEP PROCESSING OVERLAY -->
+  <div id="ai-processing-overlay" class="ai-processing-overlay">
+    <div class="ai-spinner-ring"></div>
+    <div id="ai-step-text" class="ai-step-text">Uploading Selfie...</div>
+    <div id="ai-step-subtext" class="ai-step-subtext">Connecting to PyTorch AI Server</div>
   </div>
 
-  <footer>
-    The Instant Gallery &bull; Commercial AI Facial Retrieval & Event Photo Platform &bull; PyTorch & Fast API
+  <!-- Toast Notification -->
+  <div id="toast" class="toast">
+    <i data-lucide="check-circle" size="18" color="#9AE6B4"></i>
+    <span id="toast-message">Action completed</span>
+  </div>
+
+  <!-- Footer -->
+  <footer class="saas-footer">
+    InstantGallery AI &bull; Production Event Photo Retrieval Platform &bull; PyTorch & FastAPI Engine
   </footer>
 
   <script>
     const API_BASE = (window.location.protocol.startsWith('http') && window.location.host) 
       ? window.location.origin 
       : "http://127.0.0.1:8000";
+
     let selectedSelfieFile = null;
     let cachedGalleryData = null;
     let selectedPersonId = null;
     let selectedFolderId = null;
     let webcamStream = null;
-    let currentUser = null;
 
     // Boot Initialization
     window.addEventListener('DOMContentLoaded', () => {
@@ -1458,21 +1360,16 @@
       initCustomCursor();
       lucide.createIcons();
       fetchGalleryStats();
-      const storedUser = localStorage.getItem('photographer_user');
-      if (storedUser) {
-        try {
-          currentUser = JSON.parse(storedUser);
-          showPhotographerDashboard();
-        } catch (e) {}
-      }
+
+      // Set default date picker to today
+      const datePicker = document.getElementById('event-date-input');
+      if (datePicker) datePicker.valueAsDate = new Date();
     });
 
-    // Theme Management Functions
+    // Theme Management
     function initTheme() {
-      const savedTheme = localStorage.getItem('theme_preference');
-      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-      const theme = savedTheme || (prefersDark ? 'dark' : 'light');
-      setTheme(theme, false);
+      const savedTheme = localStorage.getItem('theme_preference') || 'light';
+      setTheme(savedTheme, false);
     }
 
     function setTheme(theme, showToastMsg = true) {
@@ -1484,132 +1381,89 @@
 
       if (textElem && iconElem) {
         if (theme === 'dark') {
-          textElem.innerText = 'Light Mode';
+          textElem.innerText = 'Light';
           iconElem.setAttribute('data-lucide', 'sun');
         } else {
-          textElem.innerText = 'Dark Mode';
+          textElem.innerText = 'Dark';
           iconElem.setAttribute('data-lucide', 'moon');
         }
         lucide.createIcons();
       }
-
-      if (showToastMsg) {
-        showToast(`Switched to ${theme === 'dark' ? 'Dark 🌙' : 'Light ☀️'} Mode`);
-      }
+      if (showToastMsg) showToast(`Switched to ${theme === 'dark' ? 'Dark 🌙' : 'Light ☀️'} Mode`);
     }
 
     function toggleTheme() {
-      const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
-      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-      setTheme(newTheme, true);
+      const current = document.documentElement.getAttribute('data-theme') || 'light';
+      setTheme(current === 'dark' ? 'light' : 'dark', true);
     }
 
-    // Creative Custom Cursor Implementation
+    // Custom Cursor
     function initCustomCursor() {
       const dot = document.getElementById('cursor-dot');
       const follower = document.getElementById('cursor-follower');
-      if (!dot || !follower) return;
+      if (!dot || !follower || !window.matchMedia('(pointer: fine)').matches) return;
 
-      if (!window.matchMedia('(pointer: fine)').matches) {
-        dot.style.display = 'none';
-        follower.style.display = 'none';
-        return;
-      }
-
-      let mouseX = window.innerWidth / 2;
-      let mouseY = window.innerHeight / 2;
-      let followerX = mouseX;
-      let followerY = mouseY;
+      let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2;
+      let followerX = mouseX, followerY = mouseY;
 
       window.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-        dot.style.left = `${mouseX}px`;
-        dot.style.top = `${mouseY}px`;
+        mouseX = e.clientX; mouseY = e.clientY;
+        dot.style.left = `${mouseX}px`; dot.style.top = `${mouseY}px`;
       });
 
       function renderCursor() {
         followerX += (mouseX - followerX) * 0.16;
         followerY += (mouseY - followerY) * 0.16;
-        follower.style.left = `${followerX}px`;
-        follower.style.top = `${followerY}px`;
+        follower.style.left = `${followerX}px`; follower.style.top = `${followerY}px`;
         requestAnimationFrame(renderCursor);
       }
       requestAnimationFrame(renderCursor);
 
       document.addEventListener('mouseover', (e) => {
-        const target = e.target.closest('a, button, input, select, textarea, .photo-card, .person-card, .tab-btn, .folder-chip, .upload-zone, .preset-btn');
-        if (target) {
-          follower.classList.add('hovering');
-          dot.classList.add('hovering');
+        if (e.target.closest('a, button, input, select, textarea, .photo-card, .workflow-card, .feature-card, .upload-zone')) {
+          follower.classList.add('hovering'); dot.classList.add('hovering');
         }
       });
-
       document.addEventListener('mouseout', (e) => {
-        const target = e.target.closest('a, button, input, select, textarea, .photo-card, .person-card, .tab-btn, .folder-chip, .upload-zone, .preset-btn');
-        if (target) {
-          follower.classList.remove('hovering');
-          dot.classList.remove('hovering');
+        if (e.target.closest('a, button, input, select, textarea, .photo-card, .workflow-card, .feature-card, .upload-zone')) {
+          follower.classList.remove('hovering'); dot.classList.remove('hovering');
         }
       });
-
-      document.addEventListener('mousedown', () => {
-        follower.classList.add('clicking');
-        dot.classList.add('clicking');
-      });
-
-      document.addEventListener('mouseup', () => {
-        follower.classList.remove('clicking');
-        dot.classList.remove('clicking');
-      });
+      document.addEventListener('mousedown', () => { follower.classList.add('clicking'); });
+      document.addEventListener('mouseup', () => { follower.classList.remove('clicking'); });
     }
 
-    function showToast(msg) {
-      const toast = document.getElementById('toast');
-      const msgElem = document.getElementById('toast-message');
-      msgElem.innerText = msg;
-      toast.style.display = 'flex';
-      setTimeout(() => { toast.style.display = 'none'; }, 3000);
-    }
+    // View Switching & Navigation
+    function switchView(viewName) {
+      document.querySelectorAll('.view-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.nav-link-item').forEach(l => l.classList.remove('active'));
 
-    function switchTab(tabName, evt) {
-      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-      document.querySelectorAll('.view-panel').forEach(panel => panel.classList.remove('active'));
+      const targetView = document.getElementById(`view-${viewName}`);
+      if (targetView) targetView.classList.add('active');
 
-      const navBtn = document.getElementById(`nav-btn-${tabName}`);
-      if (navBtn) navBtn.classList.add('active');
-      document.getElementById(`tab-${tabName}`).classList.add('active');
-
-      if (tabName === 'photographer') {
-        if (currentUser) {
-          showPhotographerDashboard();
-          fetchGalleryStats();
-        } else {
-          showPhotographerAuth();
-        }
-        stopWebcamStream();
-      } else if (tabName === 'attendee') {
+      if (viewName === 'attendee') {
         startWebcamStream();
       } else {
         stopWebcamStream();
       }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    function switchSelfieMode(mode) {
-      document.getElementById('mode-btn-camera').classList.toggle('active', mode === 'camera');
-      document.getElementById('mode-btn-file').classList.toggle('active', mode === 'file');
-
-      if (mode === 'camera') {
-        document.getElementById('selfie-mode-camera').style.display = 'flex';
-        document.getElementById('selfie-mode-file').style.display = 'none';
-        startWebcamStream();
-      } else {
-        document.getElementById('selfie-mode-camera').style.display = 'none';
-        document.getElementById('selfie-mode-file').style.display = 'block';
-        stopWebcamStream();
-      }
+    function scrollToWorkflow() {
+      switchView('home');
+      setTimeout(() => {
+        document.getElementById('how-it-works').scrollIntoView({ behavior: 'smooth' });
+      }, 100);
     }
 
+    function scrollToFeatures() {
+      switchView('home');
+      setTimeout(() => {
+        document.getElementById('features').scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    }
+
+    // Webcam Management
     async function startWebcamStream() {
       const video = document.getElementById('webcam-video');
       const stopBtn = document.getElementById('stop-cam-btn');
@@ -1622,14 +1476,13 @@
         video.srcObject = webcamStream;
         if (stopBtn) stopBtn.style.display = 'inline-flex';
       } catch (err) {
-        console.warn("Webcam unavailable:", err);
         switchSelfieMode('file');
       }
     }
 
     function stopWebcamStream() {
       if (webcamStream) {
-        webcamStream.getTracks().forEach(track => track.stop());
+        webcamStream.getTracks().forEach(t => t.stop());
         webcamStream = null;
       }
       const video = document.getElementById('webcam-video');
@@ -1638,10 +1491,27 @@
       if (stopBtn) stopBtn.style.display = 'none';
     }
 
+    function switchSelfieMode(mode) {
+      document.getElementById('mode-btn-camera').classList.toggle('btn-primary', mode === 'camera');
+      document.getElementById('mode-btn-camera').classList.toggle('btn-secondary', mode !== 'camera');
+      document.getElementById('mode-btn-file').classList.toggle('btn-primary', mode === 'file');
+      document.getElementById('mode-btn-file').classList.toggle('btn-secondary', mode !== 'file');
+
+      if (mode === 'camera') {
+        document.getElementById('selfie-mode-camera').style.display = 'flex';
+        document.getElementById('selfie-mode-file').style.display = 'none';
+        startWebcamStream();
+      } else {
+        document.getElementById('selfie-mode-camera').style.display = 'none';
+        document.getElementById('selfie-mode-file').style.display = 'block';
+        stopWebcamStream();
+      }
+    }
+
     function captureWebcamSelfie() {
       const video = document.getElementById('webcam-video');
       if (!video || !webcamStream) {
-        alert("Camera is not active. Switching to File Upload mode.");
+        alert("Camera is inactive. Switching to file upload mode.");
         switchSelfieMode('file');
         return;
       }
@@ -1650,77 +1520,68 @@
       canvas.width = video.videoWidth || 480;
       canvas.height = video.videoHeight || 480;
       const ctx = canvas.getContext('2d');
-      
-      ctx.translate(canvas.width, 0);
-      ctx.scale(-1, 1);
+      ctx.translate(canvas.width, 0); ctx.scale(-1, 1);
       ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
 
       canvas.toBlob((blob) => {
         const file = new File([blob], `live_selfie_${Date.now()}.jpg`, { type: 'image/jpeg' });
         selectedSelfieFile = file;
-
-        const dataUrl = canvas.toDataURL('image/jpeg');
-        document.getElementById('selfie-preview').src = dataUrl;
-        document.getElementById('selfie-name').innerText = file.name + ' (Live Selfie)';
-        document.getElementById('selfie-preview-container').style.display = 'flex';
-
         executeSelfieSearch();
       }, 'image/jpeg', 0.92);
-    }
-
-    function updateThreshLabel(val) {
-      document.getElementById('thresh-val').innerText = parseFloat(val).toFixed(2);
-    }
-
-    function setPresetThreshold(val) {
-      document.getElementById('thresh-slider').value = val;
-      updateThreshLabel(val);
-      if (selectedSelfieFile) {
-        executeSelfieSearch();
-      }
     }
 
     function handleSelfieSelect(e) {
       const file = e.target.files[0];
       if (!file) return;
       selectedSelfieFile = file;
-
-      const reader = new FileReader();
-      reader.onload = function(evt) {
-        document.getElementById('selfie-preview').src = evt.target.result;
-        document.getElementById('selfie-name').innerText = file.name;
-        document.getElementById('selfie-preview-container').style.display = 'flex';
-        executeSelfieSearch();
-      };
-      reader.readAsDataURL(file);
+      executeSelfieSearch();
     }
 
+    // AI Selfie Search Execution with Multi-Step Animated Overlay
     async function executeSelfieSearch() {
       if (!selectedSelfieFile) return;
 
+      const overlay = document.getElementById('ai-processing-overlay');
+      const stepText = document.getElementById('ai-step-text');
+      const subText = document.getElementById('ai-step-subtext');
+
+      overlay.style.display = 'flex';
+      stepText.innerText = "Uploading Selfie...";
+      subText.innerText = "Encrypting & transferring photo to AI engine";
+
+      setTimeout(() => {
+        stepText.innerText = "Detecting Face (PyTorch MTCNN)...";
+        subText.innerText = "Locating facial landmarks & alignment matrix";
+      }, 500);
+
+      setTimeout(() => {
+        stepText.innerText = "Generating 512-d Vector (FaceNet)...";
+        subText.innerText = "Computing facial embedding representation";
+      }, 1000);
+
+      setTimeout(() => {
+        stepText.innerText = "Searching Event Face Database...";
+        subText.innerText = "Calculating cosine vector distance matrix";
+      }, 1400);
+
       const formData = new FormData();
       formData.append('file', selectedSelfieFile);
-
       const thresh = document.getElementById('thresh-slider').value;
-      const grid = document.getElementById('matches-grid');
-
-      // Render Skeleton Loading State
-      grid.innerHTML = `
-        <div class="skeleton-card"></div>
-        <div class="skeleton-card"></div>
-        <div class="skeleton-card"></div>
-      `;
 
       try {
         const res = await fetch(`${API_BASE}/api/search-selfie?threshold=${thresh}`, {
           method: 'POST',
           body: formData
         });
-
         const data = await res.json();
         renderMatches(data.matches || []);
+        showToast(`Identified ${data.matches ? data.matches.length : 0} matching photo(s)!`);
       } catch (err) {
-        grid.innerHTML = `<div style="column-span: all; text-align: center; color: #C53030; padding: 2rem;">API Server Error: Ensure FastAPI server is running at ${API_BASE}</div>`;
+        alert("API Error: Make sure backend server is running at " + API_BASE);
+      } finally {
+        setTimeout(() => {
+          overlay.style.display = 'none';
+        }, 1600);
       }
     }
 
@@ -1729,35 +1590,37 @@
       const badge = document.getElementById('results-count-badge');
 
       badge.innerText = `${matches.length} Photo(s) Found`;
-      badge.style.display = 'inline-block';
 
-      if (matches.length === 0) {
-        grid.innerHTML = '<div style="column-span: all; text-align: center; padding: 3.5rem; color: var(--color-body);">No matching photos found above the selected precision threshold. Try adjusting the slider.</div>';
+      if (!matches || matches.length === 0) {
+        grid.innerHTML = `
+          <div style="grid-column: 1 / -1; text-align: center; padding: 3.5rem; background: var(--color-card); border-radius: var(--radius-card); border: 1px dashed var(--color-border);">
+            <i data-lucide="frown" size="48" color="#8B7CF6" style="margin-bottom: 12px;"></i>
+            <h4 style="font-size: 1.1rem; margin-bottom: 4px;">No Matching Photos Found</h4>
+            <p style="font-size: 0.88rem; color: var(--color-body);">No facial vectors matched above the selected precision threshold (${document.getElementById('thresh-slider').value}). Try lowering the threshold slider.</p>
+          </div>
+        `;
         return;
       }
 
       grid.innerHTML = matches.map(m => `
         <div class="photo-card">
-          <img src="${API_BASE}${m.url}" class="photo-img" alt="${m.image_name}" />
-          <div class="photo-body">
+          <div class="photo-card-img-wrapper">
+            <img src="${API_BASE}${m.url}" alt="${m.image_name}" />
+            <span class="badge-confidence">${m.match_percentage}% Match</span>
+          </div>
+          <div class="photo-card-body">
             <div style="display: flex; justify-content: space-between; align-items: center;">
-              <div>
-                <div style="font-size: 0.92rem; font-weight: 700; color: var(--color-heading); text-overflow: ellipsis; overflow: hidden; white-space: nowrap; max-width: 140px;" title="${m.image_name}">${m.image_name}</div>
-                <div style="font-size: 0.78rem; color: var(--color-primary); font-weight: 600;">${m.matched_person_name || 'Identified Guest'}</div>
-              </div>
-              <span class="badge-match">${m.match_percentage}% Match</span>
+              <span style="font-size: 0.9rem; font-weight: 700; color: var(--color-heading); text-overflow: ellipsis; overflow: hidden; white-space: nowrap; max-width: 140px;" title="${m.image_name}">${m.image_name}</span>
+              <span style="font-size: 0.72rem; color: var(--color-primary); font-weight: 600;">📁 ${m.folder_name || 'Default Gallery'}</span>
             </div>
 
             <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 6px;">
-              <span style="font-size: 0.78rem; color: var(--color-body);">📁 ${m.folder_name || 'Default Gallery'}</span>
-              <div style="display: flex; gap: 6px;">
-                <a class="btn-action-sm btn-download" href="${API_BASE}/api/download-photo?rel_path=${encodeURIComponent(m.rel_path)}" download="${m.image_name}">
-                  <i data-lucide="download" size="14"></i> Download
-                </a>
-                <button class="btn-action-sm btn-share" onclick="copyPhotoLink('${API_BASE}${m.url}')">
-                  <i data-lucide="share-2" size="14"></i>
-                </button>
-              </div>
+              <a class="btn-primary" style="padding: 0.45rem 0.9rem; font-size: 0.8rem;" href="${API_BASE}/api/download-photo?rel_path=${encodeURIComponent(m.rel_path)}" download="${m.image_name}">
+                <i data-lucide="download" size="14"></i> Download 4K
+              </a>
+              <button class="btn-secondary" style="padding: 0.45rem;" title="Share Link" onclick="copyPhotoLink('${API_BASE}${m.url}')">
+                <i data-lucide="share-2" size="14"></i>
+              </button>
             </div>
           </div>
         </div>
@@ -1765,132 +1628,7 @@
       lucide.createIcons();
     }
 
-    function copyPhotoLink(url) {
-      navigator.clipboard.writeText(url);
-      showToast("Photo link copied to clipboard!");
-    }
-
-    // AUTHENTICATION
-    function switchAuthTab(tab) {
-      document.getElementById('auth-tab-login').classList.toggle('active', tab === 'login');
-      document.getElementById('auth-tab-signup').classList.toggle('active', tab === 'signup');
-      document.getElementById('login-form').style.display = tab === 'login' ? 'block' : 'none';
-      document.getElementById('signup-form').style.display = tab === 'signup' ? 'block' : 'none';
-      document.getElementById('auth-status').innerText = '';
-    }
-
-    function showPhotographerAuth() {
-      document.getElementById('photographer-auth-panel').style.display = 'block';
-      document.getElementById('photographer-dashboard-panel').style.display = 'none';
-    }
-
-    function showPhotographerDashboard() {
-      document.getElementById('photographer-auth-panel').style.display = 'none';
-      document.getElementById('photographer-dashboard-panel').style.display = 'block';
-      if (currentUser) {
-        document.getElementById('user-greeting').innerText = `Welcome, ${currentUser.name}`;
-        document.getElementById('user-studio').innerText = `${currentUser.studio_name} • Verified`;
-      }
-    }
-
-    async function handlePhotographerLogin(e) {
-      e.preventDefault();
-      const email = document.getElementById('login-email').value;
-      const password = document.getElementById('login-password').value;
-      const status = document.getElementById('auth-status');
-
-      status.innerText = "Authenticating... ⏳";
-      try {
-        const res = await fetch(`${API_BASE}/api/auth/login`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email, password })
-        });
-        const data = await res.json();
-        if (res.ok) {
-          currentUser = data.user;
-          localStorage.setItem('photographer_user', JSON.stringify(currentUser));
-          showPhotographerDashboard();
-          fetchGalleryStats();
-          showToast("Logged in successfully!");
-        } else {
-          status.innerText = `❌ ${data.detail || 'Login failed'}`;
-        }
-      } catch (err) {
-        status.innerText = "❌ Auth server connection error.";
-      }
-    }
-
-    async function handlePhotographerSignup(e) {
-      e.preventDefault();
-      const name = document.getElementById('signup-name').value;
-      const studio_name = document.getElementById('signup-studio').value;
-      const email = document.getElementById('signup-email').value;
-      const password = document.getElementById('signup-password').value;
-      const status = document.getElementById('auth-status');
-
-      status.innerText = "Creating photographer account... ⏳";
-      try {
-        const res = await fetch(`${API_BASE}/api/auth/signup`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name, studio_name, email, password })
-        });
-        const data = await res.json();
-        if (res.ok) {
-          currentUser = data.user;
-          localStorage.setItem('photographer_user', JSON.stringify(currentUser));
-          showPhotographerDashboard();
-          fetchGalleryStats();
-          showToast("Account created successfully!");
-        } else {
-          status.innerText = `❌ ${data.detail || 'Signup failed'}`;
-        }
-      } catch (err) {
-        status.innerText = "❌ Registration error.";
-      }
-    }
-
-    function handlePhotographerLogout() {
-      currentUser = null;
-      localStorage.removeItem('photographer_user');
-      showPhotographerAuth();
-      showToast("Logged out successfully.");
-    }
-
-    // UPLOAD & GALLERY MANAGEMENT
-    async function handleBulkUpload(e) {
-      const files = e.target.files;
-      if (!files || files.length === 0) return;
-
-      const targetFolder = document.getElementById('target-folder-select').value;
-      const formData = new FormData();
-      for (let f of files) {
-        formData.append('files', f);
-      }
-      if (targetFolder && targetFolder !== 'default') {
-        formData.append('folder_name', targetFolder);
-      }
-
-      const status = document.getElementById('upload-status');
-      status.innerText = `Uploading photos into "${targetFolder === 'default' ? 'Default Gallery' : targetFolder}" & calculating DBSCAN vectors... ⏳`;
-
-      try {
-        const res = await fetch(`${API_BASE}/api/upload-gallery`, {
-          method: 'POST',
-          body: formData
-        });
-        const data = await res.json();
-        const sum = data.indexed_summary;
-        status.innerText = `✅ Success! Indexed ${sum.total_photos} photos into ${sum.total_unique_persons} Unique Person Profiles!`;
-        e.target.value = '';
-        fetchGalleryStats();
-        showToast("Photos uploaded & indexed!");
-      } catch (err) {
-        status.innerText = "❌ Upload failed. Make sure backend is running.";
-      }
-    }
-
+    // Dashboard Gallery Management
     async function fetchGalleryStats() {
       try {
         const res = await fetch(`${API_BASE}/api/gallery`);
@@ -1908,7 +1646,7 @@
         renderFolderBar(data.folders || []);
         renderTargetFolderDropdown(data.folders || []);
         renderPersonRoster(data.persons || []);
-        applyCurrentFilters();
+        renderGalleryList(data.records || []);
       } catch (err) {
         console.error("Gallery stats error", err);
       }
@@ -1919,24 +1657,17 @@
       if (!container) return;
 
       let html = `
-        <div class="folder-chip ${selectedFolderId === null ? 'active' : ''}" onclick="selectFolderFilter(null)">
-          🌐 All Photos
-          <span class="count-badge">${cachedGalleryData ? cachedGalleryData.total_photos : 0}</span>
-        </div>
+        <span class="category-chip ${selectedFolderId === null ? 'active' : ''}" onclick="selectFolderFilter(null)">
+          🌐 All Event Photos (${cachedGalleryData ? cachedGalleryData.total_photos : 0})
+        </span>
       `;
-
       folders.forEach(f => {
-        const isSelected = selectedFolderId === f.folder_id;
-        const isDefault = f.folder_id === 'default';
         html += `
-          <div class="folder-chip ${isSelected ? 'active' : ''}" onclick="selectFolderFilter('${f.folder_id}')">
-            📁 ${f.name}
-            <span class="count-badge">${f.photo_count}</span>
-            ${!isDefault ? `<span class="delete-folder-btn" title="Delete Folder" onclick="event.stopPropagation(); deleteFolder('${f.folder_id}')">🗑️</span>` : ''}
-          </div>
+          <span class="category-chip ${selectedFolderId === f.folder_id ? 'active' : ''}" onclick="selectFolderFilter('${f.folder_id}')">
+            📁 ${f.name} (${f.photo_count})
+          </span>
         `;
       });
-
       container.innerHTML = html;
     }
 
@@ -1944,79 +1675,102 @@
       const select = document.getElementById('target-folder-select');
       if (!select) return;
 
-      const currentVal = select.value;
-      let html = `<option value="default">📁 Default Gallery (Root)</option>`;
-
+      let html = `<option value="default">📁 Default Gallery</option>`;
       folders.forEach(f => {
         if (f.folder_id !== 'default') {
           html += `<option value="${f.folder_id}">📁 ${f.name}</option>`;
         }
       });
-
       select.innerHTML = html;
-      if (currentVal && Array.from(select.options).some(o => o.value === currentVal)) {
-        select.value = currentVal;
-      }
-      updateUploadZoneTitle(select.value);
     }
 
-    function handleTargetFolderChange(val) {
-      updateUploadZoneTitle(val);
-    }
-
-    function updateUploadZoneTitle(val) {
-      const title = document.getElementById('upload-zone-title');
-      if (!title) return;
-      const folderName = val === 'default' ? 'Default Gallery' : val;
-      title.innerText = `Click or Drag Event Photos to Upload into "${folderName}"`;
-    }
-
-    function selectFolderFilter(folderId) {
-      selectedFolderId = folderId;
-      renderFolderBar(cachedGalleryData ? cachedGalleryData.folders || [] : []);
-      applyCurrentFilters();
-    }
-
-    function applyCurrentFilters() {
-      if (!cachedGalleryData) return;
-
-      let records = cachedGalleryData.records || [];
-      const title = document.getElementById('gallery-section-title');
-
-      if (selectedPersonId) {
-        records = records.filter(r => r.faces && r.faces.some(f => f.person_id === selectedPersonId));
-      }
-
-      if (selectedFolderId) {
-        if (selectedFolderId === 'default') {
-          records = records.filter(r => !r.rel_path.includes('/') && !r.rel_path.includes('\\'));
-        } else {
-          records = records.filter(r => r.folder_name === selectedFolderId || r.rel_path.startsWith(selectedFolderId + '/'));
-        }
-      }
-
-      let labelText = "Current Event Gallery Payload";
-      if (selectedPersonId || selectedFolderId) {
-        const parts = [];
-        if (selectedFolderId) parts.push(`Folder: ${selectedFolderId === 'default' ? 'Default Gallery' : selectedFolderId}`);
-        if (selectedPersonId) {
-          const p = cachedGalleryData.persons.find(x => x.person_id === selectedPersonId);
-          parts.push(`Person: ${p ? p.name : selectedPersonId}`);
-        }
-        labelText = `Filtered Photos (${parts.join(' | ')}) - ${records.length} Photo(s)`;
-      }
-      if (title) title.innerText = labelText;
-
-      renderGalleryList(records);
-    }
-
-    async function createNewFolder() {
-      const input = document.getElementById('new-folder-name');
-      const folderName = input.value.trim();
-      if (!folderName) {
-        alert("Please enter a folder name.");
+    function renderPersonRoster(persons) {
+      const rosterGrid = document.getElementById('person-roster-grid');
+      if (!rosterGrid) return;
+      if (!persons || persons.length === 0) {
+        rosterGrid.innerHTML = '<div style="grid-column: 1 / -1; color: var(--color-body);">No unique person clusters identified yet. Upload photos to generate guest profiles.</div>';
         return;
       }
+
+      rosterGrid.innerHTML = persons.map(p => `
+        <div style="background: var(--color-card); border: 1px solid var(--color-border); padding: 0.8rem; border-radius: 12px; text-align: center; cursor: pointer;" onclick="filterByPerson('${p.person_id}')">
+          <img src="${API_BASE}${p.thumbnail_url}" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover; margin-bottom: 6px;" alt="${p.name}" />
+          <div style="font-weight: 700; font-size: 0.85rem; color: var(--color-heading);">${p.name}</div>
+          <div style="font-size: 0.74rem; color: var(--color-body);">${p.photo_count} Photo(s)</div>
+        </div>
+      `).join('');
+    }
+
+    function renderGalleryList(records) {
+      const listGrid = document.getElementById('gallery-list-grid');
+      if (!listGrid) return;
+
+      if (!records || records.length === 0) {
+        listGrid.innerHTML = '<div style="grid-column: 1 / -1; text-align: center; color: var(--color-body); padding: 2.5rem;">No event photos match the selected criteria.</div>';
+        return;
+      }
+
+      listGrid.innerHTML = records.map(r => `
+        <div class="photo-card">
+          <div class="photo-card-img-wrapper">
+            <img src="${API_BASE}${r.url}" alt="${r.image_name}" />
+            <span class="badge-confidence" style="background: var(--color-primary);">${r.faces ? r.faces.length : 0} Face(s)</span>
+          </div>
+          <div class="photo-card-body">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span style="font-size: 0.88rem; font-weight: 700; color: var(--color-heading); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 140px;" title="${r.image_name}">${r.image_name}</span>
+              <span style="font-size: 0.74rem; color: var(--color-body);">📁 ${r.folder_name || 'Default'}</span>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 4px;">
+              <a class="btn-primary" style="padding: 0.4rem 0.8rem; font-size: 0.78rem;" href="${API_BASE}/api/download-photo?rel_path=${encodeURIComponent(r.rel_path)}" download="${r.image_name}">
+                <i data-lucide="download" size="13"></i> Download
+              </a>
+              <button class="btn-secondary" style="padding: 0.4rem;" onclick="deletePhoto('${r.rel_path.replace(/'/g, "\\'")}')">
+                <i data-lucide="trash-2" size="13" color="#E53E3E"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+      lucide.createIcons();
+    }
+
+    // Bulk Photo Upload Handler
+    async function handleBulkUpload(e) {
+      const files = e.target.files;
+      if (!files || files.length === 0) return;
+
+      const targetFolder = document.getElementById('target-folder-select').value;
+      const formData = new FormData();
+      for (let f of files) formData.append('files', f);
+      if (targetFolder && targetFolder !== 'default') formData.append('folder_name', targetFolder);
+
+      const progressContainer = document.getElementById('upload-progress-container');
+      const statusText = document.getElementById('upload-status-text');
+      progressContainer.style.display = 'block';
+      statusText.innerText = `Uploading ${files.length} photos & calculating MTCNN vectors... ⏳`;
+
+      try {
+        const res = await fetch(`${API_BASE}/api/upload-gallery`, { method: 'POST', body: formData });
+        const data = await res.json();
+        statusText.innerText = `✅ Success! Indexed ${data.indexed_summary.total_photos} photos into ${data.indexed_summary.total_unique_persons} Unique Guests!`;
+        e.target.value = '';
+        fetchGalleryStats();
+        showToast("Event photos uploaded & indexed successfully!");
+      } catch (err) {
+        statusText.innerText = "❌ Upload failed. Ensure backend server is running.";
+      }
+    }
+
+    // Create Event Handler
+    async function handleCreateEventSubmit(e) {
+      e.preventDefault();
+      const eventName = document.getElementById('event-name-input').value.trim();
+      const eventType = document.getElementById('event-type-select').value;
+
+      if (!eventName) return;
+      const folderName = `${eventType} - ${eventName}`;
 
       try {
         const res = await fetch(`${API_BASE}/api/folders`, {
@@ -2025,162 +1779,62 @@
           body: JSON.stringify({ folder_name: folderName })
         });
         const data = await res.json();
-        input.value = '';
-        await fetchGalleryStats();
-        
-        const select = document.getElementById('target-folder-select');
-        if (select) {
-          select.value = data.folder_name;
-          updateUploadZoneTitle(data.folder_name);
-        }
-        showToast(`Folder "${data.folder_name}" created!`);
-      } catch (err) {
-        alert("Failed to create folder: " + err);
-      }
-    }
-
-    async function deleteFolder(folderName) {
-      if (!confirm(`Are you sure you want to delete the folder "${folderName}" and all photos inside it?`)) {
-        return;
-      }
-
-      try {
-        const res = await fetch(`${API_BASE}/api/folders/${encodeURIComponent(folderName)}`, {
-          method: 'DELETE'
-        });
-        await res.json();
-        if (selectedFolderId === folderName) {
-          selectedFolderId = null;
-        }
+        closeCreateEventModal();
         fetchGalleryStats();
-        showToast(`Folder "${folderName}" deleted.`);
+        showToast(`Event "${folderName}" created!`);
       } catch (err) {
-        alert("Failed to delete folder: " + err);
+        alert("Failed to create event: " + err);
       }
     }
 
     async function deletePhoto(relPath) {
-      if (!confirm(`Delete photo "${relPath}" from gallery?`)) {
-        return;
-      }
-
+      if (!confirm(`Delete photo "${relPath}"?`)) return;
       try {
-        const res = await fetch(`${API_BASE}/api/delete-photo`, {
+        await fetch(`${API_BASE}/api/delete-photo`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ rel_path: relPath })
         });
-        await res.json();
         fetchGalleryStats();
         showToast("Photo deleted.");
       } catch (err) {
-        alert("Failed to delete photo: " + err);
+        alert("Failed to delete photo");
       }
     }
 
     async function confirmClearAll() {
-      if (!confirm("⚠️ Are you sure you want to delete ALL photos and folders in the event gallery?")) {
-        return;
-      }
-
+      if (!confirm("⚠️ Are you sure you want to delete ALL photos and events in the gallery?")) return;
       try {
-        const res = await fetch(`${API_BASE}/api/clear-all`, {
-          method: 'POST'
-        });
-        await res.json();
-        selectedFolderId = null;
-        selectedPersonId = null;
+        await fetch(`${API_BASE}/api/clear-all`, { method: 'POST' });
         fetchGalleryStats();
         showToast("Gallery cleared.");
       } catch (err) {
-        alert("Failed to clear gallery: " + err);
+        alert("Failed to clear gallery");
       }
     }
 
-    function renderPersonRoster(persons) {
-      const rosterGrid = document.getElementById('person-roster-grid');
-      if (!rosterGrid) return;
-      if (!persons || persons.length === 0) {
-        rosterGrid.innerHTML = '<div style="column-span: all; color: var(--color-body);">No unique person clusters identified yet. Upload photos to generate profiles.</div>';
-        return;
-      }
-
-      rosterGrid.innerHTML = persons.map(p => `
-        <div class="person-card ${selectedPersonId === p.person_id ? 'active' : ''}" onclick="filterByPerson('${p.person_id}')">
-          <img src="${API_BASE}${p.thumbnail_url}" class="person-avatar" alt="${p.name}" onerror="this.src='https://via.placeholder.com/80/8B7CF6/ffffff?text=User'" />
-          <div style="font-weight: 700; font-size: 0.95rem; font-family: 'Poppins', sans-serif;">${p.name}</div>
-          <div style="font-size: 0.78rem; color: var(--color-body); margin-top: 2px;">${p.photo_count} Photo(s) &bull; ${p.face_count} Vector(s)</div>
-        </div>
-      `).join('');
-    }
-
-    function filterByPerson(personId) {
-      selectedPersonId = personId;
-      renderPersonRoster(cachedGalleryData ? cachedGalleryData.persons || [] : []);
-      applyCurrentFilters();
-    }
-
-    function renderGalleryList(records) {
-      const listGrid = document.getElementById('gallery-list-grid');
-      if (!listGrid) return;
-      if (!records || records.length === 0) {
-        listGrid.innerHTML = '<div style="column-span: all; text-align: center; color: var(--color-body); padding: 3rem; background: var(--color-card); border-radius: 16px; border: 1px dashed var(--color-border);">No photos match the selected criteria.</div>';
-        return;
-      }
-
-      listGrid.innerHTML = records.map(r => `
-        <div class="photo-card">
-          <img src="${API_BASE}${r.url}" class="photo-img" alt="${r.image_name}" />
-          <div class="photo-body">
-            <div style="display: flex; justify-content: space-between; width: 100%; align-items: center;">
-              <span style="font-size: 0.9rem; color: var(--color-heading); font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 140px;" title="${r.image_name}">${r.image_name}</span>
-              <span class="badge-match">${r.faces ? r.faces.length : 0} Face(s)</span>
-            </div>
-            <div style="display: flex; justify-content: space-between; width: 100%; align-items: center; margin-top: 4px;">
-              <span style="font-size: 0.78rem; color: var(--color-body);">📁 ${r.folder_name || 'Default Gallery'}</span>
-              <div style="display: flex; gap: 6px;">
-                <a class="btn-action-sm btn-download" href="${API_BASE}/api/download-photo?rel_path=${encodeURIComponent(r.rel_path)}" download="${r.image_name}">
-                  <i data-lucide="download" size="14"></i> Download
-                </a>
-                <button class="btn-action-sm btn-danger" onclick="event.stopPropagation(); deletePhoto('${r.rel_path.replace(/'/g, "\\'")}')">
-                  <i data-lucide="trash-2" size="14"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      `).join('');
-      lucide.createIcons();
-    }
-
-    // MODAL HANDLERS
-    function openDemoModal() {
-      document.getElementById('demo-modal').style.display = 'flex';
-    }
-    function closeDemoModal() {
-      document.getElementById('demo-modal').style.display = 'none';
-    }
+    // Modal Controls
+    function openCreateEventModal() { document.getElementById('create-event-modal').style.display = 'flex'; }
+    function closeCreateEventModal() { document.getElementById('create-event-modal').style.display = 'none'; }
     function openQRModal() {
-      const liveUrl = (window.location.protocol.startsWith('http') && window.location.host) 
-        ? window.location.href 
-        : "http://127.0.0.1:8000";
-      const qrImg = document.getElementById('qr-code-img');
-      if (qrImg) {
-        qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(liveUrl)}`;
-      }
+      const liveUrl = (window.location.protocol.startsWith('http') && window.location.host) ? window.location.href : "http://127.0.0.1:8000";
+      document.getElementById('qr-code-img').src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(liveUrl)}`;
       document.getElementById('qr-modal').style.display = 'flex';
     }
-    function closeQRModal() {
-      document.getElementById('qr-modal').style.display = 'none';
+    function closeQRModal() { document.getElementById('qr-modal').style.display = 'none'; }
+    function copyQRLink() { navigator.clipboard.writeText(window.location.origin); showToast("Event link copied!"); }
+    function copyPhotoLink(url) { navigator.clipboard.writeText(url); showToast("Photo link copied!"); }
+    function updateThreshLabel(val) { document.getElementById('thresh-val').innerText = parseFloat(val).toFixed(2); }
+    function setPresetThreshold(val) {
+      document.getElementById('thresh-slider').value = val;
+      updateThreshLabel(val);
+      if (selectedSelfieFile) executeSelfieSearch();
     }
-    function copyQRLink() {
-      navigator.clipboard.writeText(window.location.origin);
-      showToast("Event URL copied to clipboard!");
-    }
-    function startDemoSimulation() {
-      showToast("Simulation active: Redirecting to Live Selfie Search!");
-      closeDemoModal();
-      switchTab('attendee');
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toast-message').innerText = msg;
+      toast.style.display = 'flex';
+      setTimeout(() => { toast.style.display = 'none'; }, 3000);
     }
   </script>
 </body>
