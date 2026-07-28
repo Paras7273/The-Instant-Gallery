@@ -14,27 +14,34 @@ class FaceEngine:
         self.use_facenet = False
         self.facenet_model = None
         self.mtcnn = None
+        self.cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
         
-        try:
-            import torch
-            from facenet_pytorch import MTCNN, InceptionResnetV1
-            self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-            
-            # High-precision MTCNN configuration
-            self.mtcnn = MTCNN(
-                keep_all=True,
-                min_face_size=self.min_face_size,
-                thresholds=[0.75, 0.8, 0.85],
-                post_process=True,
-                device=self.device
-            )
-            self.facenet_model = InceptionResnetV1(pretrained='vggface2').eval().to(self.device)
-            self.use_facenet = True
-            print(f"Loaded High-Precision PyTorch MTCNN + FaceNet (512-d) on {self.device}.")
-        except Exception as e:
-            print(f"PyTorch FaceNet fallback warning: {e}")
-            print("Falling back to OpenCV Deep Learning / Haar Face Detector.")
-            self.cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
+        # Check if running in memory-constrained environment (Render Free Tier ~512MB)
+        disable_pytorch = os.environ.get("DISABLE_PYTORCH", "false").lower() == "true"
+        
+        if not disable_pytorch:
+            try:
+                import torch
+                from facenet_pytorch import MTCNN, InceptionResnetV1
+                self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+                
+                # High-precision MTCNN configuration
+                self.mtcnn = MTCNN(
+                    keep_all=True,
+                    min_face_size=self.min_face_size,
+                    thresholds=[0.75, 0.8, 0.85],
+                    post_process=True,
+                    device=self.device
+                )
+                self.facenet_model = InceptionResnetV1(pretrained='vggface2').eval().to(self.device)
+                self.use_facenet = True
+                print(f"Loaded High-Precision PyTorch MTCNN + FaceNet (512-d) on {self.device}.")
+            except Exception as e:
+                print(f"PyTorch FaceNet fallback warning: {e}")
+                print("Falling back to OpenCV Deep Learning / Haar Face Detector for cloud environment compatibility.")
+                self.use_facenet = False
+        else:
+            print("DISABLE_PYTORCH flag detected. Using lightweight OpenCV Face Detector.")
 
     def detect_faces(self, image_path):
         """

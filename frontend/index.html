@@ -13,6 +13,12 @@
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
 
+  <!-- Cloud Deployment Backend URL Configuration -->
+  <script>
+    // If hosting frontend separately (e.g. Vercel) and backend on Render, uncomment & set your Render URL below:
+    // window.RENDER_BACKEND_URL = "https://your-backend-name.onrender.com";
+  </script>
+
   <style>
     :root {
       /* Design Tokens */
@@ -1343,10 +1349,11 @@
     InstantGallery AI &bull; Production Event Photo Retrieval Platform &bull; PyTorch & FastAPI Engine
   </footer>
 
-  <script>
-    const API_BASE = (window.location.protocol.startsWith('http') && window.location.host) 
-      ? window.location.origin 
-      : "http://127.0.0.1:8000";
+    // API Base URL - Configurable for cross-origin cloud hosting (e.g. Vercel frontend + Render backend)
+    const API_BASE = window.RENDER_BACKEND_URL 
+      || ((window.location.protocol.startsWith('http') && window.location.host) 
+          ? window.location.origin 
+          : "http://127.0.0.1:8000");
 
     let selectedSelfieFile = null;
     let cachedGalleryData = null;
