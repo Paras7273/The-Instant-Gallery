@@ -7,10 +7,3 @@ services:
     envVars:
       - key: PYTHON_VERSION
         value: 3.10.12
-      - key: DISABLE_PYTORCH
-        value: false
-    disk:
-      name: photo-data
-      mountPath: /app/data
-      sizeGB: 1
-
